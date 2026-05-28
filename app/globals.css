@@ -964,7 +964,7 @@ hr { border: none; border-top: 1px solid var(--sep); }
 ============================================================ */
 .reg-page-header {
   display: flex; justify-content: space-between; align-items: flex-end;
-  gap: 48px; border-bottom: 1px solid var(--sep); padding-bottom: 40px;
+  gap: 48px; border-bottom: none; padding-bottom: 40px;
 }
 .reg-page-header > div:first-child { flex: 1; min-width: 0; }
 .reg-page-header .page-header__subhead { max-width: none; }
@@ -1024,7 +1024,6 @@ hr { border: none; border-top: 1px solid var(--sep); }
   gap: 48px;
   align-items: end;
   padding: 80px var(--margin) 60px;
-  border-bottom: 1px solid var(--sep);
 }
 .vc-map-header__hint {
   font-size: var(--t-nav);
@@ -1254,37 +1253,7 @@ hr { border: none; border-top: 1px solid var(--sep); }
   max-width: 380px;
 }
 
-/* Contact form success state */
-.form-success {
-  display: none;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 8px 0 4px;
-  animation: fadeUp 0.4s ease both;
-}
-.form-success.is-visible { display: flex; }
-.form-success__icon {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: #111111;
-  color: #ffffff;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.form-success__title {
-  font-family: var(--font);
-  font-size: 22px;
-  font-weight: 600;
-  color: #111111;
-  letter-spacing: -0.3px;
-}
-.form-success__body {
-  font-family: var(--font);
-  font-size: 15px;
-  color: #555555;
-}
+/* Contact form success state — defined below with about-form styles */
 
 /* ============================================================
    CARD READ-TIME (articles index)
@@ -1429,7 +1398,7 @@ hr { border: none; border-top: 1px solid var(--sep); }
 
 .form-success {
   display: none; flex-direction: column; align-items: flex-start;
-  gap: 12px; padding: 8px 0 4px;
+  gap: 12px; padding: 8px 0 4px; animation: fadeUp 0.4s ease both;
 }
 .form-success.is-visible { display: flex; }
 .form-success__icon {
@@ -1440,6 +1409,10 @@ hr { border: none; border-top: 1px solid var(--sep); }
 }
 .form-success__title { font-size: 22px; font-weight: 600; color: #111111; letter-spacing: -0.3px; }
 .form-success__body  { font-size: 15px; color: #555555; line-height: 1.6; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* ============================================================
    REGULATION TRACKER (cartography)

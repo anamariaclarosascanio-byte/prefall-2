@@ -87,24 +87,26 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {READING_NOW.map((article) => (
-            <article key={article.id} className="card" aria-label="Open article">
-              <div className="card__img">
-                <div className="img-ph" />
-              </div>
-              <div className="card__body">
-                <div className="card__meta-row">
-                  <span className="card__tag">{article.tag}</span>
-                  <span className="card__time">{article.read}</span>
+          <div id="reading-now-row1" style={{ display: "contents" }}>
+            {READING_NOW.map((article) => (
+              <article key={article.id} className="card" aria-label="Open article">
+                <div className="card__img">
+                  <div className="img-ph" />
                 </div>
-                <h3 className="card__title">{article.title}</h3>
-              </div>
-            </article>
-          ))}
+                <div className="card__body">
+                  <div className="card__meta-row">
+                    <span className="card__tag">{article.tag}</span>
+                    <span className="card__time">{article.read}</span>
+                  </div>
+                  <h3 className="card__title">{article.title}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
 
         {/* Row 2: large image (3fr) + featured text (2fr) */}
-        <div className="home-grid__row2">
+        <div className="home-grid__row2" id="reading-now-row2">
           <article className="card card--feat" aria-label="Open article">
             <div className="card__img">
               <div className="img-ph" />

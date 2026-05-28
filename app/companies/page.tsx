@@ -17,26 +17,42 @@ export default function CompaniesPage() {
           describes the business model, sets out the economic logic it runs on, and maps the
           regulatory exposure that shapes its future.
         </p>
+        {/* Mobile filter — hidden on desktop, shown ≤768px */}
+        <div className="co-filter-wrap">
+          <button className="co-filter-trigger" id="co-filter-trigger">
+            <span id="co-filter-label">All categories</span>
+            <span className="co-filter-icon">+</span>
+          </button>
+          <div className="co-filter-panel" id="co-filter-panel">
+            <button className="co-filter-option is-active" data-filter="all">All</button>
+            <button className="co-filter-option" data-filter="raw-materials">Raw Materials</button>
+            <button className="co-filter-option" data-filter="yarn-fabric">Yarn &amp; Fabric</button>
+            <button className="co-filter-option" data-filter="manufacturing">Manufacturing</button>
+            <button className="co-filter-option" data-filter="brands">Brands</button>
+            <button className="co-filter-option" data-filter="retail">Retail</button>
+            <button className="co-filter-option" data-filter="secondary-market">Secondary Market</button>
+          </div>
+        </div>
       </div>
 
       <section className="section" aria-label="Company directory">
 
-        {/* Filter controls */}
+        {/* Filter controls — desktop */}
         <div className="issues-controls">
           <div className="filter-bar">
             <span className="eyebrow" style={{ marginRight: 6 }}>Filter by</span>
-            <button className="filter-btn is-active">All</button>
-            <button className="filter-btn">Raw Materials</button>
-            <button className="filter-btn">Yarn &amp; Fabric</button>
-            <button className="filter-btn">Manufacturing</button>
-            <button className="filter-btn">Brands</button>
-            <button className="filter-btn">Retail</button>
-            <button className="filter-btn">Secondary Market</button>
+            <button className="filter-btn is-active" data-filter="all">All</button>
+            <button className="filter-btn" data-filter="raw-materials">Raw Materials</button>
+            <button className="filter-btn" data-filter="yarn-fabric">Yarn &amp; Fabric</button>
+            <button className="filter-btn" data-filter="manufacturing">Manufacturing</button>
+            <button className="filter-btn" data-filter="brands">Brands</button>
+            <button className="filter-btn" data-filter="retail">Retail</button>
+            <button className="filter-btn" data-filter="secondary-market">Secondary Market</button>
           </div>
         </div>
 
         {/* Company grid */}
-        <div className="companies-grid">
+        <div className="companies-grid" id="companies-grid">
 
           {/* Vestiaire Collective */}
           <a className="company-card" href="#" data-node="secondary-market">

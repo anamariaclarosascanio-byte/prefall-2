@@ -81,46 +81,30 @@ export default function ValueChainPage() {
         </div>
       </div>
 
-      {/* Nodes */}
-      <section className="section" aria-label="Value chain nodes">
-        <nav className="vc-nodes" aria-label="Value chain nodes">
-          {VALUE_CHAIN_NODES.map((node) => (
-            <Link
-              key={node.slug}
-              href={`/value-chain/${node.slug}`}
-              className="vc-node"
-            >
-              <span className="vc-node__num">{node.num}</span>
-              <span className="vc-node__name">{node.name}</span>
-              <span className="vc-node__arr">↗</span>
-            </Link>
-          ))}
-        </nav>
-
-        {/* Descriptions */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(7, 1fr)",
-            gap: 0,
-            marginTop: 40,
-            borderTop: "1px solid var(--sep)",
-          }}
-        >
-          {VALUE_CHAIN_NODES.map((node) => (
-            <div
-              key={node.slug}
-              style={{
-                padding: "24px 20px 24px 0",
-                borderRight: "1px solid var(--sep)",
-                paddingRight: 20,
-              }}
-            >
-              <p style={{ fontSize: 12, color: "var(--gray)", lineHeight: 1.65 }}>{node.desc}</p>
-            </div>
-          ))}
+      {/* Full lifecycle map */}
+      <div className="pill-tooltip" id="pill-tt"></div>
+      <div className="lc-wrap">
+        <div className="lc-svg-wrap">
+          <nav className="vc-nodes lc-nodes-desktop" aria-label="Value chain nodes">
+            {VALUE_CHAIN_NODES.map((node) => (
+              <Link
+                key={node.slug}
+                href={`/value-chain/${node.slug}`}
+                className="vc-node"
+              >
+                <span className="vc-node__num">{node.num}</span>
+                <span className="vc-node__name">{node.name}</span>
+                <span className="vc-node__arr">↗</span>
+                <span className="vc-node__desc">{node.desc}</span>
+              </Link>
+            ))}
+          </nav>
+          <div className="lc-fade" id="lc-fade">
+            <svg id="lc-svg" viewBox="-28 0 1496 620" width="100%" preserveAspectRatio="xMidYMid meet" style={{ minWidth: "1440px" }}></svg>
+          </div>
         </div>
-      </section>
+        <div className="lc-legend-wrap" id="lc-legend"></div>
+      </div>
 
       <div className="vc-map-footer">
         <p className="vc-caption">

@@ -15,7 +15,7 @@ export default function NewsletterPage() {
           <span className="eyebrow">The Prefall newsletter</span>
         </div>
         <div className="nl-hero__content">
-          <div>
+          <div className="nl-hero__left">
             <h1 className="newsletter-heading">
               One question.<br />
               Every issue.
@@ -26,8 +26,8 @@ export default function NewsletterPage() {
               reasoning. No digest. No recap.
             </p>
           </div>
-          <div className="nl-hero__right">
-            <form className="nl-form" noValidate>
+          <div className="nl-hero__right" id="nl-hero-right">
+            <form className="nl-form" id="nl-form-nl" noValidate>
               <div className="nl-form__field">
                 <input
                   className="nl-form__input"
@@ -39,6 +39,11 @@ export default function NewsletterPage() {
               </div>
               <button className="nl-form__submit" type="submit">Subscribe</button>
             </form>
+            <div className="nl-success" id="nl-success" aria-live="polite">
+              <div className="nl-success__line"></div>
+              <p className="nl-success__title">You&apos;re in.<br />First issue coming soon.</p>
+              <p className="nl-success__body">We&apos;ll send the next issue straight to your inbox.</p>
+            </div>
           </div>
         </div>
       </div>

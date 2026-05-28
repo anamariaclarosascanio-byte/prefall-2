@@ -20,6 +20,20 @@ export default function JobsPage() {
         <p style={{ fontSize: "var(--t-small)", color: "var(--gray)", marginTop: 16 }}>
           Prefall does not handle applications.
         </p>
+        {/* Mobile filter — hidden on desktop, shown ≤768px */}
+        <div className="co-filter-wrap">
+          <button className="co-filter-trigger" id="job-filter-trigger">
+            <span id="job-filter-label">All categories</span>
+            <span className="co-filter-icon">+</span>
+          </button>
+          <div className="co-filter-panel" id="job-filter-panel">
+            <button className="co-filter-option is-active" data-filter="all">All</button>
+            <button className="co-filter-option" data-filter="esg">ESG &amp; Compliance</button>
+            <button className="co-filter-option" data-filter="sustainability">Sustainability</button>
+            <button className="co-filter-option" data-filter="regulation">Regulation</button>
+            <button className="co-filter-option" data-filter="circularity">Circularity</button>
+          </div>
+        </div>
       </div>
 
       <section className="section" aria-label="Job listings" style={{ paddingTop: 28 }}>
@@ -42,7 +56,7 @@ export default function JobsPage() {
         </div>
 
         {/* Job listings */}
-        <div>
+        <div className="jobs-grid">
           <a className="job-item" href="#">
             <div>
               <div className="job-item__title-row">

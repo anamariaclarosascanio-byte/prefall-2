@@ -80,8 +80,15 @@ export default function AboutPage() {
         </div>
       </div>
 
+      {/* Author portrait */}
+      <div className="company-gallery">
+        <div className="company-gallery__main">
+          <div className="img-ph" />
+        </div>
+      </div>
+
       {/* Contact */}
-      <div className="about-contact" id="contact">
+      <div className="about-contact" id="about-contact">
         <div className="about-contact__left">
           <p className="prose-section__label" style={{ marginBottom: 32 }}>Get in touch</p>
           <p className="prose-section__body" style={{ marginBottom: 12 }}>
@@ -102,30 +109,35 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="about-contact__right">
-          <div>
+        <div className="about-contact__right" id="about-contact-card">
+          <div className="about-form__head" id="about-form-head">
             <p className="about-form__title">Send a message</p>
             <p className="about-form__sub">We read every message and reply within one business day.</p>
           </div>
-          <form className="about-contact-form" noValidate>
+          <form className="about-contact-form" id="about-contact-form" noValidate>
             <div className="form-field">
-              <label className="form-field__label" htmlFor="contact-name">Name</label>
-              <input className="form-field__input" type="text" id="contact-name" placeholder="Your name" required />
+              <label className="form-field__label" htmlFor="about-contact-name">Name</label>
+              <input className="form-field__input" type="text" id="about-contact-name" placeholder="Your name" required />
             </div>
             <div className="form-field">
-              <label className="form-field__label" htmlFor="contact-email">Email</label>
-              <input className="form-field__input" type="email" id="contact-email" placeholder="your@email.com" required />
+              <label className="form-field__label" htmlFor="about-contact-email">Email</label>
+              <input className="form-field__input" type="email" id="about-contact-email" placeholder="your@email.com" required />
             </div>
             <div className="form-field">
-              <label className="form-field__label" htmlFor="contact-subject">Subject</label>
-              <input className="form-field__input" type="text" id="contact-subject" placeholder="What is this about?" />
+              <label className="form-field__label" htmlFor="about-contact-subject">Subject</label>
+              <input className="form-field__input" type="text" id="about-contact-subject" placeholder="What is this about?" />
             </div>
             <div className="form-field">
-              <label className="form-field__label" htmlFor="contact-message">Message</label>
-              <textarea className="form-field__textarea" id="contact-message" placeholder="Your message" required />
+              <label className="form-field__label" htmlFor="about-contact-message">Message</label>
+              <textarea className="form-field__textarea" id="about-contact-message" placeholder="Your message" required />
             </div>
             <button className="btn-contact-submit" type="submit">Send message →</button>
           </form>
+          <div className="form-success" id="about-form-success" aria-live="polite">
+            <div className="form-success__icon">✓</div>
+            <p className="form-success__title">Message sent.</p>
+            <p className="form-success__body">Thank you — we&apos;ll be in touch within one business day.</p>
+          </div>
         </div>
       </div>
 

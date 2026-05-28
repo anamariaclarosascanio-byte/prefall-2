@@ -25,16 +25,16 @@ export default function ArticlesPage() {
         <div className="issues-controls">
           <div className="filter-bar" aria-label="Filter articles">
             <span className="eyebrow" style={{ marginRight: 6 }}>Filter by</span>
-            <button className="filter-btn is-active">All</button>
-            <button className="filter-btn">Business models</button>
-            <button className="filter-btn">Regulation</button>
-            <button className="filter-btn">Consumer behaviour</button>
-            <button className="filter-btn">Capital</button>
-            <button className="filter-btn">Manufacturing</button>
-            <button className="filter-btn">Resale</button>
-            <button className="filter-btn">Rental</button>
-            <button className="filter-btn">New technologies</button>
-            <button className="filter-btn">Brands</button>
+            <button className="filter-btn is-active" data-filter="all">All</button>
+            <button className="filter-btn" data-filter="business-models">Business models</button>
+            <button className="filter-btn" data-filter="regulation">Regulation</button>
+            <button className="filter-btn" data-filter="consumer-behaviour">Consumer behaviour</button>
+            <button className="filter-btn" data-filter="capital">Capital</button>
+            <button className="filter-btn" data-filter="manufacturing">Manufacturing</button>
+            <button className="filter-btn" data-filter="resale">Resale</button>
+            <button className="filter-btn" data-filter="rental">Rental</button>
+            <button className="filter-btn" data-filter="new-technologies">New technologies</button>
+            <button className="filter-btn" data-filter="brands">Brands</button>
           </div>
           <div className="sort-bar">
             <span className="sort-bar__label">Sort</span>
@@ -45,8 +45,8 @@ export default function ArticlesPage() {
 
         {/* Block B1: 1fr | 2fr | 1fr */}
         <div className="block-b1" style={{ marginBottom: 20 }}>
-          <article className="card">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card" data-category="business-models">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#141414,#202020)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Business models</span>
@@ -56,8 +56,8 @@ export default function ArticlesPage() {
             </div>
           </article>
 
-          <article className="card card--big">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card card--big" data-category="regulation">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#0a0a0a,#1e1e1e)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Regulation</span>
@@ -67,8 +67,8 @@ export default function ArticlesPage() {
             </div>
           </article>
 
-          <article className="card">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card" data-category="consumer-behaviour">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#0e0e0e,#1a1a1a)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Consumer behaviour</span>
@@ -81,8 +81,8 @@ export default function ArticlesPage() {
 
         {/* Block B2: 1fr | 1fr | 2fr */}
         <div className="block-b2" style={{ marginBottom: 20 }}>
-          <article className="card">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card" data-category="capital">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#131313,#1d1d1d)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Capital</span>
@@ -92,8 +92,8 @@ export default function ArticlesPage() {
             </div>
           </article>
 
-          <article className="card">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card" data-category="manufacturing">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#111,#1c1c1c)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Manufacturing</span>
@@ -103,8 +103,8 @@ export default function ArticlesPage() {
             </div>
           </article>
 
-          <article className="card card--big">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card card--big" data-category="business-models">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#090909,#181818)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Business models</span>
@@ -117,8 +117,8 @@ export default function ArticlesPage() {
 
         {/* Block B3: 4 equal */}
         <div className="block-b3">
-          <article className="card">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card" data-category="regulation">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#121212,#1e1e1e)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Regulation</span>
@@ -128,8 +128,8 @@ export default function ArticlesPage() {
             </div>
           </article>
 
-          <article className="card">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card" data-category="consumer-behaviour">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#101010,#1b1b1b)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Consumer behaviour</span>
@@ -139,8 +139,8 @@ export default function ArticlesPage() {
             </div>
           </article>
 
-          <article className="card">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card" data-category="business-models">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#0d0d0d,#191919)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Business models</span>
@@ -150,8 +150,8 @@ export default function ArticlesPage() {
             </div>
           </article>
 
-          <article className="card">
-            <div className="card__img"><div className="img-ph" /></div>
+          <article className="card" data-category="manufacturing">
+            <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#0b0b0b,#161616)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
                 <span className="card__tag">Manufacturing</span>

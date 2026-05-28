@@ -36,6 +36,20 @@ export default function RegulationPage() {
         </div>
       </div>
 
+      {/* Interactive regulatory cartography tracker */}
+      <div className="ca">
+        <div className="ca-head stagger-item" style={{ transitionDelay: "0s" }}>
+          <div className="ca-eye">Regulatory Cartography · Updated March 2026</div>
+        </div>
+        <div className="ca-filter stagger-item" id="ca-filter" style={{ transitionDelay: "0.10s" }}></div>
+        <div className="ca-grid-wrap stagger-item" style={{ transitionDelay: "0.20s" }}>
+          <div className="ca-grid-label">Hover enforcement and event cells for details</div>
+          <div className="ca-grid" id="ca-grid"></div>
+        </div>
+        <div className="ca-legend stagger-item" id="ca-legend" style={{ transitionDelay: "0.30s" }}></div>
+        <div className="ca-countdowns" id="ca-countdowns"></div>
+      </div>
+
       <section className="section" aria-label="Regulation index" style={{ borderBottom: "none", borderTop: "none" }}>
 
         {/* In force */}
@@ -83,6 +97,22 @@ export default function RegulationPage() {
             </div>
             <span className="badge badge--in-force">In force</span>
           </a>
+          <a className="reg-item" href="#">
+            <div>
+              <p className="reg-item__name">France eco-score</p>
+              <p className="reg-item__full">France Textile Environmental Score</p>
+              <p className="reg-item__summary">Voluntary environmental impact scoring for apparel sold in France, mandatory for any brand making environmental claims. Third parties may publish scores without brand consent from October 2026.</p>
+            </div>
+            <span className="badge badge--in-force">In force</span>
+          </a>
+          <a className="reg-item" href="#">
+            <div>
+              <p className="reg-item__name">California SB 707</p>
+              <p className="reg-item__full">California Textile Extended Producer Responsibility Act</p>
+              <p className="reg-item__summary">First US state textile EPR law. Applies to producers with more than $1M global annual turnover selling into California. Producer registration required by July 2026.</p>
+            </div>
+            <span className="badge badge--in-force">In force</span>
+          </a>
         </div>
 
         {/* Amended */}
@@ -94,7 +124,7 @@ export default function RegulationPage() {
             <div>
               <p className="reg-item__name">CSRD</p>
               <p className="reg-item__full">Corporate Sustainability Reporting Directive</p>
-              <p className="reg-item__summary">Omnibus I (March 2026) narrowed scope to companies with more than 1,000 employees AND more than €450M net turnover. First mandatory reports due 2028 for FY2027.</p>
+              <p className="reg-item__summary">Omnibus I (March 2026) narrowed scope to companies with more than 1,000 employees AND more than €450M net turnover, both thresholds required. First mandatory reports due 2028 for FY2027.</p>
             </div>
             <span className="badge badge--amended">Amended</span>
           </a>
@@ -149,6 +179,14 @@ export default function RegulationPage() {
               <p className="reg-item__name">Green Claims Directive</p>
               <p className="reg-item__full">EU Green Claims Directive</p>
               <p className="reg-item__summary">Would have required independent pre-verification of all explicit environmental claims. Legislative process suspended June 2025; no confirmed revival date.</p>
+            </div>
+            <span className="badge badge--preparation">Proposed</span>
+          </a>
+          <a className="reg-item" href="#">
+            <div>
+              <p className="reg-item__name">Italy fast fashion bill</p>
+              <p className="reg-item__full">Italy DDL S.1690 Fast Fashion Bill</p>
+              <p className="reg-item__summary">Proposes eco-score labelling, advertising restrictions on ultra-fast fashion, and a parcel levy. Introduced to the Italian Senate in October 2025; still under parliamentary review.</p>
             </div>
             <span className="badge badge--preparation">Proposed</span>
           </a>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree, Unbounded } from "next/font/google";
+import { Figtree, Unbounded, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -15,6 +15,14 @@ const unbounded = Unbounded({
   subsets: ["latin"],
   weight: ["500"],
   variable: "--font-unbounded",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  style: ["italic"],
+  weight: ["400", "500"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -38,7 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${figtree.variable} ${unbounded.variable}`}
+      className={`${figtree.variable} ${unbounded.variable} ${playfair.variable}`}
       style={{ fontFamily: "var(--font-figtree, 'Figtree', sans-serif)" }}
     >
       <body className="min-h-screen flex flex-col">

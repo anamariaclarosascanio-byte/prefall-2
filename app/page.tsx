@@ -1,29 +1,38 @@
 import Link from "next/link";
 
-/* ── Placeholder data (will be replaced with Sanity queries) ── */
-const FEATURED_ARTICLES = [
+/* ── Placeholder articles (will come from Sanity) ── */
+const READING_NOW = [
   {
     id: "1",
-    eyebrow: "Business Models · Apr 2026",
+    tag: "Business Models",
+    read: "8 min",
     title: "Why resale isn't the silver bullet brands hoped for",
-    body: "Resale platforms promised margin-positive circularity. The unit economics say otherwise.",
-    slug: "resale-economics",
   },
   {
     id: "2",
-    eyebrow: "Regulation · Mar 2026",
+    tag: "Regulation",
+    read: "6 min",
     title: "CSRD: what the first wave of reports actually revealed",
-    body: "Mandatory disclosure is here. The data quality gap between ambition and reality is wider than expected.",
-    slug: "csrd-first-reports",
   },
   {
     id: "3",
-    eyebrow: "Consumer · Mar 2026",
+    tag: "Consumer",
+    read: "5 min",
     title: "The affordability ceiling and the sustainability premium",
-    body: "Willingness-to-pay research across seven markets shows the ceiling is lower than brands assume.",
-    slug: "affordability-ceiling",
   },
 ];
+
+const FEATURED_ARTICLE = {
+  title: "The secondhand market's unit economics problem",
+  excerpt:
+    "Resale platforms promised margin-positive circularity. Three years of data across six platforms shows the economics only work at scale — and most brands are not at scale.",
+};
+
+const FEATURED_COMPANY = {
+  name: "Veja",
+  node: "Brands",
+  body: "Veja has built one of the most scrutinised supply chains in fashion. The brand publishes cost breakdowns that few others dare to share. We look at what the numbers reveal about the economics of radical transparency.",
+};
 
 const VALUE_CHAIN_NODES = [
   { num: "01", name: "Raw Materials",      slug: "rawmat" },
@@ -38,255 +47,191 @@ const VALUE_CHAIN_NODES = [
 export default function HomePage() {
   return (
     <>
-      {/* ── HERO ── */}
-      <section
-        aria-labelledby="hero-heading"
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-          padding: "calc(var(--header-h) + 100px) var(--margin) 80px",
-        }}
-      >
-        <p
-          style={{
-            fontSize: "var(--t-eyebrow)",
-            fontWeight: 400,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "var(--gray)",
-            marginBottom: 36,
-          }}
-        >
+      {/* ══════════════════════════════════════════════════
+          HERO
+      ══════════════════════════════════════════════════ */}
+      <section className="hero" aria-labelledby="hero-heading">
+        <p className="hero__label">
           Independent editorial intelligence on the business of fashion
         </p>
-
-        <h1
-          id="hero-heading"
-          style={{
-            fontSize: "var(--t-hero)",
-            fontWeight: 600,
-            lineHeight: 1.04,
-            letterSpacing: "-0.025em",
-            maxWidth: 1400,
-            marginBottom: 40,
-          }}
-        >
+        <h1 className="hero__heading" id="hero-heading">
           The business behind<br />
           the next season<br />
           of fashion.
         </h1>
-
-        <p
-          style={{
-            fontSize: "var(--t-body)",
-            fontWeight: 400,
-            lineHeight: 1.55,
-            color: "var(--subtle)",
-            maxWidth: 780,
-            letterSpacing: "-0.01em",
-            marginBottom: 52,
-          }}
-        >
+        <p className="hero__body">
           Prefall analyses the economic viability of fashion&apos;s transition toward
           sustainability. We cover the business models, the regulation, and the consumer
           behaviour that determine which propositions hold up commercially and which do not.
         </p>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-          <Link href="/articles" className="btn btn--primary">
-            Read the latest →
-          </Link>
-          <Link href="/contact" className="btn btn--ghost">
-            Get in touch →
-          </Link>
+        <div className="hero__ctas">
+          <Link href="/articles" className="btn btn--primary">Read the latest →</Link>
+          <Link href="/about#contact" className="btn btn--ghost">Get in touch →</Link>
         </div>
       </section>
 
-      {/* ── READING NOW ── */}
-      <section
-        aria-label="Reading now"
-        style={{ padding: "var(--section-py) var(--margin)", borderBottom: "none" }}
-      >
+      {/* ══════════════════════════════════════════════════
+          READING NOW
+      ══════════════════════════════════════════════════ */}
+      <section className="section" aria-label="Reading now" style={{ borderBottom: "none" }}>
         <span className="section__label">Reading now</span>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr 1fr 1fr",
-            gap: "var(--gutter)",
-            alignItems: "start",
-          }}
-          className="home-grid"
-        >
-          {/* Editorial intro */}
-          <div
-            style={{
-              paddingRight: 40,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              height: "100%",
-              paddingTop: 80,
-            }}
-          >
-            <p
-              style={{
-                fontSize: 20,
-                fontWeight: 300,
-                lineHeight: 1.4,
-                letterSpacing: "-0.015em",
-                marginBottom: 24,
-                color: "var(--subtle)",
-              }}
-            >
-              Analysis of business models, consumer behaviour, and the economic limits
-              shaping sustainable fashion.
+        {/* Row 1: editorial intro (cols 1–2) + 3 article cards (cols 3–5) */}
+        <div className="home-grid__row1">
+          <div className="home-grid__intro">
+            <p className="home-grid__intro-body">
+              Analysis of business models, consumer behaviour, and the economic limits shaping sustainable fashion.
             </p>
-            <Link
-              href="/articles"
-              className="link-u"
-              style={{ fontSize: 14, color: "var(--gray)" }}
-            >
+            <Link href="/articles" className="home-grid__intro-cta link-u">
               View all →
             </Link>
           </div>
 
-          {/* Article cards */}
-          {FEATURED_ARTICLES.map((article) => (
-            <div
-              key={article.id}
-              className="card"
-              style={{ borderTop: "1px solid var(--sep)", paddingTop: 20 }}
-            >
-              <div
-                style={{
-                  aspectRatio: "3/2",
-                  background: "#E8E8E6",
-                  marginBottom: 20,
-                  overflow: "hidden",
-                }}
-              />
-              <p className="card__eyebrow">{article.eyebrow}</p>
-              <h3 className="card__title">{article.title}</h3>
-              <p className="card__body">{article.body}</p>
-            </div>
+          {READING_NOW.map((article) => (
+            <article key={article.id} className="card" aria-label="Open article">
+              <div className="card__img">
+                <div className="img-ph" />
+              </div>
+              <div className="card__body">
+                <div className="card__meta-row">
+                  <span className="card__tag">{article.tag}</span>
+                  <span className="card__time">{article.read}</span>
+                </div>
+                <h3 className="card__title">{article.title}</h3>
+              </div>
+            </article>
           ))}
+        </div>
+
+        {/* Row 2: large image (3fr) + featured text (2fr) */}
+        <div className="home-grid__row2">
+          <article className="card card--feat" aria-label="Open article">
+            <div className="card__img">
+              <div className="img-ph" />
+            </div>
+          </article>
+          <div className="featured-text">
+            <span className="featured-text__label">Featured</span>
+            <h2 className="featured-text__title">{FEATURED_ARTICLE.title}</h2>
+            <p className="featured-text__excerpt">{FEATURED_ARTICLE.excerpt}</p>
+            <Link href="/articles" className="featured-text__cta link-u">
+              Read article →
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ── REGULATION IN FOCUS ── */}
+      {/* ══════════════════════════════════════════════════
+          FEATURED COMPANY
+      ══════════════════════════════════════════════════ */}
       <section
+        className="section"
+        aria-label="Featured company"
+        style={{ borderBottom: "none", paddingTop: 48, paddingBottom: 48 }}
+      >
+        <p className="company-module__label">From the directory</p>
+        <div className="company-module">
+          <div className="company-module__text">
+            <h2 className="company-module__name">{FEATURED_COMPANY.name}</h2>
+            <p className="company-module__node">{FEATURED_COMPANY.node}</p>
+            <p className="company-module__body">{FEATURED_COMPANY.body}</p>
+            <Link href="/companies" className="btn btn--ghost">
+              View in directory →
+            </Link>
+          </div>
+          <div className="company-module__img">
+            <div className="img-ph" />
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          REGULATION IN FOCUS
+      ══════════════════════════════════════════════════ */}
+      <section
+        className="section"
         aria-label="Regulation in focus"
-        style={{ padding: "60px var(--margin)", borderBottom: "1px solid var(--sep)" }}
+        style={{ paddingTop: 40, borderBottom: "none" }}
       >
         <span className="section__label">Regulation that matters now</span>
 
-        <div
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}
-          className="reg-grid"
-        >
+        <div className="regulation-module">
           <div>
             <div className="status-badge status-badge--transit">
               <span className="status-badge__dot status-badge__dot--transit" />
               In transposition
             </div>
-            <h2
-              style={{
-                fontSize: "clamp(44px, 6vw, 72px)",
-                fontWeight: 600,
-                lineHeight: 1.0,
-                letterSpacing: "-0.03em",
-                marginBottom: 8,
-              }}
-            >
-              CSRD
-            </h2>
-            <p style={{ fontSize: 14, color: "var(--gray)", marginBottom: 20 }}>
-              Corporate Sustainability Reporting Directive
-            </p>
-            <p
-              style={{
-                fontSize: 16,
-                lineHeight: 1.65,
-                color: "var(--subtle)",
-                maxWidth: 480,
-                marginBottom: 32,
-              }}
-            >
-              Requires large companies to disclose detailed information on how they manage
-              social and environmental challenges. First reports due 2025 for large companies,
-              with cascade through mid-size companies by 2027.
+            <h2 className="regulation-module__name">CSRD</h2>
+            <p className="regulation-module__full">Corporate Sustainability Reporting Directive</p>
+            <p className="regulation-module__summary">
+              Requires large companies to disclose detailed information on how they manage social and
+              environmental challenges. First reports due 2025 for large companies, with cascade through
+              mid-size companies by 2027.
             </p>
             <Link href="/regulation" className="btn btn--ghost">
               View all regulation →
             </Link>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-            <div>
-              <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>
-                Also in force
-              </span>
-              <div className="regulation-list">
-                {[
-                  { label: "ESPR: Ecodesign for Sustainable Products", status: "active" },
-                  { label: "Digital Product Passport", status: "transit" },
-                  { label: "Green Claims Directive", status: "transit" },
-                ].map((r) => (
-                  <span key={r.label} className="regulation-list__item">
-                    <span
-                      className={`status-badge__dot status-badge__dot--${r.status}`}
-                      style={{ flexShrink: 0, marginTop: 6 }}
-                    />
-                    {r.label}
+          <div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+              <div>
+                <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>
+                  Also in force
+                </span>
+                <div className="regulation-list">
+                  <span className="regulation-list__item">
+                    <span className="status-badge__dot status-badge__dot--active" style={{ flexShrink: 0, marginTop: 6 }} />
+                    ESPR: Ecodesign for Sustainable Products
                   </span>
-                ))}
+                  <span className="regulation-list__item">
+                    <span className="status-badge__dot status-badge__dot--transit" style={{ flexShrink: 0, marginTop: 6 }} />
+                    Digital Product Passport
+                  </span>
+                  <span className="regulation-list__item">
+                    <span className="status-badge__dot status-badge__dot--transit" style={{ flexShrink: 0, marginTop: 6 }} />
+                    Green Claims Directive
+                  </span>
+                </div>
               </div>
-            </div>
-            <div>
-              <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>
-                In preparation
-              </span>
-              <div className="regulation-list">
-                {["Extended Producer Responsibility", "Textile Waste Directive"].map((r) => (
-                  <span key={r} className="regulation-list__item">
-                    <span
-                      className="status-badge__dot status-badge__dot--prep"
-                      style={{ flexShrink: 0, marginTop: 6 }}
-                    />
-                    {r}
+              <div>
+                <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>
+                  In preparation
+                </span>
+                <div className="regulation-list">
+                  <span className="regulation-list__item">
+                    <span className="status-badge__dot status-badge__dot--prep" style={{ flexShrink: 0, marginTop: 6 }} />
+                    Extended Producer Responsibility
                   </span>
-                ))}
+                  <span className="regulation-list__item">
+                    <span className="status-badge__dot status-badge__dot--prep" style={{ flexShrink: 0, marginTop: 6 }} />
+                    Textile Waste Directive
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── VALUE CHAIN PREVIEW ── */}
-      <section
-        aria-label="Value chain"
-        style={{ padding: "var(--section-py) var(--margin)", borderBottom: "none" }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            gap: 32,
-            marginBottom: 52,
-            flexWrap: "wrap",
-          }}
-        >
+      {/* ══════════════════════════════════════════════════
+          FULL-WIDTH IMAGE
+      ══════════════════════════════════════════════════ */}
+      <div className="home-fullwidth-img">
+        <div className="img-ph" />
+      </div>
+
+      {/* ══════════════════════════════════════════════════
+          VALUE CHAIN PREVIEW
+      ══════════════════════════════════════════════════ */}
+      <section className="section" aria-label="Value chain" style={{ borderBottom: "none" }}>
+        <div className="vc-header">
           <div>
             <h2 className="section__heading section__heading--entity">
               The fashion value chain
             </h2>
             <p className="section__subhead">
-              Six nodes from raw materials to the secondary market. Click any node to see the
-              companies, regulations, and analysis that touch it.
+              Six nodes from raw materials to the secondary market. Click any node to see the companies, regulations, and analysis that touch it.
             </p>
           </div>
           <Link href="/value-chain" className="btn btn--ghost" style={{ flexShrink: 0 }}>
@@ -294,65 +239,24 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <nav
-          aria-label="Value chain nodes"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(7, 1fr)",
-            borderTop: "1px solid var(--sep)",
-          }}
-          className="vc-nodes-grid"
-        >
+        <nav className="vc-nodes" aria-label="Value chain nodes">
           {VALUE_CHAIN_NODES.map((node) => (
             <Link
               key={node.slug}
               href={`/value-chain?node=${node.slug}`}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                padding: "20px 16px 20px 0",
-                borderRight: "1px solid var(--sep)",
-                gap: 8,
-              }}
+              className="vc-node"
             >
-              <span style={{ fontSize: 9, letterSpacing: "0.14em", color: "var(--gray)" }}>
-                {node.num}
-              </span>
-              <span style={{ fontSize: 13, fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.3 }}>
-                {node.name}
-              </span>
-              <span style={{ fontSize: 11, color: "var(--gray)" }}>↗</span>
+              <span className="vc-node__num">{node.num}</span>
+              <span className="vc-node__name">{node.name}</span>
+              <span className="vc-node__arr">↗</span>
             </Link>
           ))}
         </nav>
 
-        <p
-          style={{
-            fontSize: 13,
-            lineHeight: 1.6,
-            color: "var(--gray)",
-            maxWidth: 620,
-            marginTop: 32,
-            fontStyle: "italic",
-          }}
-        >
-          The economics of the industry rarely sit inside a single node. The cost of a
-          sustainability decision at one stage is often absorbed, or avoided, at another.
+        <p className="vc-caption">
+          The economics of the industry rarely sit inside a single node. The cost of a sustainability decision at one stage is often absorbed, or avoided, at another.
         </p>
       </section>
-
-      <style>{`
-        @media (max-width: 1100px) {
-          .home-grid { grid-template-columns: 1fr 1fr !important; }
-          .home-grid > div:first-child { grid-column: 1 / -1; padding-right: 0 !important; padding-top: 0 !important; }
-          .reg-grid  { grid-template-columns: 1fr !important; }
-          .vc-nodes-grid { grid-template-columns: repeat(4, 1fr) !important; }
-        }
-        @media (max-width: 768px) {
-          .home-grid { grid-template-columns: 1fr !important; }
-          .vc-nodes-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-      `}</style>
     </>
   );
 }

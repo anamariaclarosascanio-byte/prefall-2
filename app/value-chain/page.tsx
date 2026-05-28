@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LifecycleMapScript } from "@/components/LifecycleMapScript";
 
 export const metadata: Metadata = {
   title: "Value Chain — Prefall",
@@ -106,6 +107,7 @@ export default function ValueChainPage() {
         <div className="lc-legend-wrap" id="lc-legend"></div>
       </div>
 
+      <LifecycleMapScript />
       <div className="vc-map-footer">
         <p className="vc-caption">
           The economics of the industry rarely sit inside a single node. The cost of a

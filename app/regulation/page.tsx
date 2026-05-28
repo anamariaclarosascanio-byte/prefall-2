@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { RegulationTrackerScript } from "@/components/RegulationTrackerScript";
 
 export const metadata: Metadata = {
   title: "Regulation — Prefall",
@@ -48,6 +49,7 @@ export default function RegulationPage() {
         </div>
         <div className="ca-legend stagger-item" id="ca-legend" style={{ transitionDelay: "0.30s" }}></div>
         <div className="ca-countdowns" id="ca-countdowns"></div>
+      <RegulationTrackerScript />
       </div>
 
       <section className="section" aria-label="Regulation index" style={{ borderBottom: "none", borderTop: "none" }}>

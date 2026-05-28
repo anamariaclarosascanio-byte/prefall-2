@@ -30,11 +30,6 @@ export function ArticleModal() {
             <button className="modal__close-btn" id="modal-close-btn" aria-label="Close">×</button>
             <p className="modal__date" id="modal-date" />
             <h2 className="modal__title" id="modal-title" />
-            <div className="modal__impact" id="modal-impact">
-              <span className="impact-dot" id="modal-impact-dot" />
-              <span className="modal__impact-label" id="modal-impact-label" />
-            </div>
-            <p className="modal__metric" id="modal-metric" />
           </div>
 
           <div className="modal__right-body">

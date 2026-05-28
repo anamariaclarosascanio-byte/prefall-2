@@ -18,7 +18,6 @@ export function InteractiveScript() {
 
     function openModal(data: {
       slug: string; date: string; title: string; tag: string;
-      impact: string; impactLabel: string; metric: string;
       synopsis: string; takeaways: string[]; sources: string[]; sectors: string[];
       gradient?: string;
     }) {
@@ -34,22 +33,16 @@ export function InteractiveScript() {
       });
 
       // Metadata
-      const dateEl   = document.getElementById('modal-date');
-      const titleEl  = document.getElementById('modal-title');
-      const dotEl    = document.getElementById('modal-impact-dot');
-      const labelEl  = document.getElementById('modal-impact-label');
-      const metricEl = document.getElementById('modal-metric');
-      if (dateEl)   dateEl.textContent  = data.date;
-      if (titleEl)  titleEl.textContent = data.title;
-      if (dotEl)    { dotEl.className = `impact-dot impact-dot--${data.impact}`; }
-      if (labelEl)  labelEl.textContent = data.impactLabel;
-      if (metricEl) metricEl.textContent = data.metric;
+      const dateEl  = document.getElementById('modal-date');
+      const titleEl = document.getElementById('modal-title');
+      if (dateEl)  dateEl.textContent  = data.date;
+      if (titleEl) titleEl.textContent = data.title;
 
       // Body sections
-      const synopsisEl   = document.getElementById('modal-synopsis');
-      const takeawaysEl  = document.getElementById('modal-takeaways');
-      const sourcesEl    = document.getElementById('modal-sources');
-      const sectorsEl    = document.getElementById('modal-sectors');
+      const synopsisEl  = document.getElementById('modal-synopsis');
+      const takeawaysEl = document.getElementById('modal-takeaways');
+      const sourcesEl   = document.getElementById('modal-sources');
+      const sectorsEl   = document.getElementById('modal-sectors');
       if (synopsisEl)  synopsisEl.textContent = data.synopsis;
       if (takeawaysEl) takeawaysEl.innerHTML  = data.takeaways.map(t => `<li>${t}</li>`).join('');
       if (sourcesEl)   sourcesEl.innerHTML    = data.sources.map(s => `<li>${s}</li>`).join('');
@@ -174,7 +167,7 @@ export function InteractiveScript() {
     });
 
     // ── Contact form submit ────────────────────────────────────────────────────
-    document.querySelectorAll('.about-contact__form, .contact-form-v2__form, form[data-contact]').forEach(form => {
+    document.querySelectorAll('.about-contact__form, .about-contact-form, .contact-form-v2__form, form[data-contact]').forEach(form => {
       form.addEventListener('submit', (e: Event) => {
         e.preventDefault();
         const formEl = form as HTMLElement;

@@ -16,7 +16,7 @@ export default function SiteFooter() {
         <Link href="/newsletter" className="footer-cta-btn">
           Subscribe to the newsletter
         </Link>
-        <Link href="/about#contact" className="footer-cta-btn">
+        <Link href="/contact" className="footer-cta-btn">
           Get in touch →
         </Link>
       </div>
@@ -55,7 +55,7 @@ export default function SiteFooter() {
             <li><Link href="/about">About</Link></li>
             <li><Link href="/methodology">Methodology</Link></li>
             <li><Link href="/newsletter">Newsletter</Link></li>
-            <li><Link href="/about#contact">Contact</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
           </ul>
         </div>
 
@@ -64,8 +64,8 @@ export default function SiteFooter() {
           <h4>Legal</h4>
           <ul>
             <li><Link href="/privacy">Privacy Policy</Link></li>
-            <li><a href="#">Cookie Policy</a></li>
-            <li><a href="#">Terms of Use</a></li>
+            <li><Link href="/privacy">Cookie Policy</Link></li>
+            <li><Link href="/privacy">Terms of Use</Link></li>
           </ul>
         </div>
       </div>

@@ -1339,6 +1339,124 @@ hr { border: none; border-top: 1px solid var(--sep); }
 .prose-section__heading { font-size: clamp(20px,2.5vw,28px); font-weight: 400; line-height: 1.15; letter-spacing: -0.015em; margin-bottom: 20px; }
 .prose-section__body { font-size: var(--t-body); font-weight: 400; line-height: 1.6; color: rgba(0,0,0,0.55); }
 .prose-section__body + .prose-section__body { margin-top: 16px; }
+.prose-hero__sub { font-size: var(--t-body); font-weight: 400; line-height: 1.6; color: rgba(0,0,0,0.45); margin-top: 16px; }
+
+/* Privacy / Legal — block layout */
+.prose-section__block { padding: 40px 0; border-bottom: 1px solid var(--sep); }
+.prose-section__block:last-child { border-bottom: none; }
+.prose-section__list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.prose-section__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(0,0,0,0.55);
+}
+.prose-section__list li::before {
+  content: '—';
+  color: rgba(0,0,0,0.35);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   CONTACT PAGE (standalone /contact route)
+============================================================ */
+.contact-page {
+  min-height: 100vh;
+  padding: calc(var(--header-h) + 80px) var(--margin) 120px;
+}
+.contact-page__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+  max-width: 1200px;
+}
+.contact-page__left { padding-top: 8px; }
+.contact-page__heading {
+  font-size: var(--t-display);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  margin: 0 0 24px;
+}
+.contact-page__desc {
+  font-size: var(--t-body);
+  font-weight: 400;
+  color: rgba(0,0,0,0.55);
+  line-height: 1.6;
+  max-width: 340px;
+}
+.contact-page__desc a { color: inherit; text-decoration: underline; }
+
+.contact-page__right {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.09);
+  border-radius: 16px;
+  padding: 40px 36px;
+}
+.contact-form-v2__title {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #111111;
+  margin-bottom: 8px;
+}
+.contact-form-v2__sub {
+  font-size: 15px;
+  color: #888888;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+.contact-form-v2__form { display: flex; flex-direction: column; gap: 22px; }
+.contact-form-v2__form .form-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 0; }
+.contact-form-v2__form .form-field__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #999999;
+  margin-bottom: 0;
+}
+.contact-form-v2__form .form-field__input,
+.contact-form-v2__form .form-field__textarea,
+.contact-form-v2__form .form-field__select {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 8px;
+  padding: 13px 16px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #111111;
+  width: 100%;
+  font-family: var(--font);
+  transition: border-color 0.18s;
+  outline: none;
+}
+.contact-form-v2__form .form-field__input:focus,
+.contact-form-v2__form .form-field__textarea:focus,
+.contact-form-v2__form .form-field__select:focus { border-color: var(--accent); }
+.contact-form-v2__form .form-field__input::placeholder,
+.contact-form-v2__form .form-field__textarea::placeholder { color: #C0C0C0; }
+.contact-form-v2__form .form-field__select {
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%23999999' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+}
+.contact-form-v2__form .form-field__textarea { resize: none; min-height: 120px; }
+
+@media (max-width: 768px) {
+  .contact-page__inner { grid-template-columns: 1fr; gap: 48px; }
+}
 
 /* ============================================================
    ABOUT CONTACT SECTION + FORM

@@ -960,6 +960,75 @@ hr { border: none; border-top: 1px solid var(--sep); }
 }
 
 /* ============================================================
+   REGULATION PAGE
+============================================================ */
+.reg-page-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 48px; border-bottom: 1px solid var(--sep); padding-bottom: 40px;
+}
+.reg-page-header > div:first-child { flex: 1; min-width: 0; }
+.reg-page-header .page-header__subhead { max-width: none; }
+
+.reg-status-group { margin-bottom: 60px; }
+.reg-status-group__heading {
+  font-size: var(--t-eyebrow); font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 0; padding: 16px 0;
+  border-bottom: 1px solid var(--sep);
+  display: flex; align-items: center; gap: 12px;
+}
+.reg-item {
+  display: grid; grid-template-columns: 1fr auto; align-items: start;
+  gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--sep);
+  cursor: pointer; transition: opacity 0.25s; text-decoration: none; color: inherit;
+}
+.reg-item:hover { opacity: 0.70; }
+.reg-item__name { font-size: clamp(16px,2vw,22px); font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 6px; }
+.reg-item__full { font-size: var(--t-small); color: var(--gray); margin-bottom: 10px; }
+.reg-item__summary { font-size: 14px; font-weight: 400; line-height: 1.65; color: rgba(0,0,0,0.55); }
+
+/* ============================================================
+   NEWSLETTER HERO / FEATURES
+============================================================ */
+.nl-hero {
+  padding: calc(var(--header-h) + 80px) var(--margin) 96px;
+  border-bottom: 1px solid var(--sep);
+}
+.nl-hero__kicker { margin-bottom: 56px; }
+.nl-hero__content {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+}
+.nl-hero__right { padding-bottom: 8px; }
+
+.nl-features {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border-bottom: 1px solid var(--sep);
+}
+.nl-feature {
+  padding: 48px 28px; border-right: 1px solid var(--sep);
+}
+.nl-feature:first-child { padding-left: var(--margin); }
+.nl-feature:last-child  { border-right: none; padding-right: var(--margin); }
+.nl-feature__num {
+  display: block; font-size: 10px; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gray); margin-bottom: 16px;
+}
+.nl-feature__text { font-size: var(--t-body); font-weight: 400; line-height: 1.6; color: rgba(0,0,0,0.55); }
+
+/* ============================================================
+   VALUE CHAIN MAP PAGE
+============================================================ */
+.vc-map-page { padding-top: var(--header-h); }
+.vc-map-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 60px; padding: 80px var(--margin) 60px; border-bottom: 1px solid var(--sep);
+}
+.vc-map-header > div:first-child { flex: 1; min-width: 0; }
+.vc-map-header__hint {
+  font-size: 13px; color: var(--gray); margin-top: 16px; line-height: 1.6;
+}
+.vc-map-footer { padding: 48px var(--margin) 80px; }
+
+/* ============================================================
    CARD READ-TIME (articles index)
 ============================================================ */
 .card__read-time {

@@ -1,115 +1,74 @@
 import Link from "next/link";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
+import { FEATURED_ARTICLES_QUERY, ALL_COMPANIES_QUERY } from "@/sanity/lib/queries";
+import { format } from "date-fns";
 
-/* ── Article modal data (matches prototype articles array) ── */
-const ARTICLES_DATA = [
-  {
-    id: "0", slug: "resale-platforms-unit-economics",
-    tag: "Business models", read: "8 min read", date: "12 May 2026",
-    title: "Resale platforms and the unit economics that determine whether the model works at scale",
-    impact: "medium", impactLabel: "Medium regulatory impact",
-    metric: "Key metric: Authentication cost as % of GMV in luxury resale: 12–18%",
-    synopsis: "Peer-to-peer resale platforms for luxury goods have demonstrated product-market fit in the upper segment. The question is whether the cost structure, particularly authentication, scales into lower-margin categories without destroying the economics.",
-    takeaways: ["Authentication overhead is fixed per item, making margin compression severe at lower price points.", "Platforms entering the mid-market face a cost structure mismatch the luxury segment does not.", "Network effects accumulate on the supply side; demand-side retention is the unsolved problem.", "Revenue mix between take-rate and fulfilment services determines long-run profitability."],
-    sources: ["Vestiaire Collective, Annual disclosure 2024", "Vinted, investor presentation 2025", "BCG, The Recommerce Opportunity report", "Euromonitor, Secondhand Apparel 2025"],
-    sectors: ["Secondary Market", "Brands", "Retail", "Consumer", "Capital"],
-    gradient: "linear-gradient(135deg,#141414,#222)",
-  },
-  {
-    id: "1", slug: "espr-fast-product-cycles",
-    tag: "Regulation", read: "11 min read", date: "5 May 2026",
-    title: "What ESPR means for brands that built their model on fast product cycles",
-    impact: "high", impactLabel: "High regulatory impact",
-    metric: "Key metric: Estimated redesign cost per SKU under ESPR durability requirements: €8k–€24k",
-    synopsis: "The Ecodesign for Sustainable Products Regulation imposes minimum durability, repairability, and recyclability requirements that are structurally incompatible with high-volume, low-cost product development.",
-    takeaways: ["ESPR's durability standards require minimum component lifespans incompatible with current fast-fashion lead times.", "Repairability requirements will raise unit costs for brands whose margins depend on non-serviceable construction.", "Non-compliant products face market withdrawal: a binary outcome, not a fine.", "Compliance timeline varies by product category; phased exposure is the real planning challenge."],
-    sources: ["European Commission — ESPR Regulation text (EU) 2024/1781", "EURATEX — Industry impact assessment 2025", "H&M Group — Sustainability report 2024", "Zara / Inditex — Annual report 2024"],
-    sectors: ["Brands", "Manufacturing", "Retail", "Regulation"],
-    gradient: "linear-gradient(135deg,#121212,#1e1e1e)",
-  },
-  {
-    id: "2", slug: "consumer-behaviour-gap",
-    tag: "Consumer behaviour", read: "14 min read", date: "28 Apr 2026",
-    title: "The gap between stated intention and purchasing behaviour in sustainable fashion",
-    impact: "medium", impactLabel: "Medium commercial impact",
-    metric: "Key metric: Willingness-to-pay premium for verified sustainability credentials: 7–12% (vs stated 28%)",
-    synopsis: "Consumer surveys consistently overstate willingness to pay for sustainable products. The purchasing data tells a different story. This piece analyses the gap between stated and revealed preference.",
-    takeaways: ["The intention-action gap in sustainable fashion purchasing is structurally larger than in food or personal care.", "Price sensitivity at checkout erodes the stated 28% premium to an observed 7–12%.", "Verification and certification labels increase conversion marginally but do not close the gap.", "Segment analysis shows the gap narrows significantly in professional, high-income demographics."],
-    sources: ["McKinsey — State of Fashion 2025", "GreenPrint — Consumer sustainability survey 2025", "Nielsen — Sustainability Purchase Behaviour Report", "Kantar — Purpose 2025 study"],
-    sectors: ["Consumer", "Brands", "Retail", "ESG & Compliance"],
-    gradient: "linear-gradient(135deg,#0e0e0e,#1a1a1a)",
-  },
-  {
-    id: "3", slug: "csrd-reporting-burden",
-    tag: "Regulation", read: "15 min read", date: "5 May 2026",
-    title: "The CSRD reporting burden and what it actually costs a mid-size fashion brand to comply",
-    impact: "high", impactLabel: "High regulatory impact",
-    metric: "Key metric: First-year compliance cost for a mid-size brand without existing infrastructure: €300k–€800k",
-    synopsis: "The CSRD creates a two-speed market inside fashion: incumbents with existing NFRD infrastructure absorb it at marginal cost, while mid-size brands face a step-change in fixed overhead.",
-    takeaways: ["First-year compliance costs for mid-size brands without existing infrastructure range €300k–€800k.", "The burden concentrates in data collection and third-party verification, not the report itself.", "Brands without CSRD-grade supplier visibility face secondary exposure through large customer obligations.", "Compliance creates a structural cost advantage for large players over the medium term."],
-    sources: ["European Commission, CSRD Directive", "EFRAG — ESRS sector-specific standards", "PwC, CSRD readiness survey 2025", "Company disclosures: H&M Group, Inditex, Zalando"],
-    sectors: ["Brands", "Retail", "Manufacturing", "ESG & Compliance", "Capital allocation"],
-    gradient: "linear-gradient(135deg,#0a0a0a,#1e1e1e)",
-  },
-  {
-    id: "4", slug: "valuation-correction",
-    tag: "Capital", read: "12 min read", date: "14 Apr 2026",
-    title: "The valuation correction in sustainable fashion and what it reveals about investor assumptions",
-    impact: "medium", impactLabel: "Medium capital impact",
-    metric: "Key metric: Median EV/Revenue multiple decline for sustainability-positioned fashion companies, 2022–2025: −61%",
-    synopsis: "The valuation correction in sustainable fashion between 2022 and 2025 was not a sector-wide collapse. It was a recalibration of assumptions about consumer transition pace.",
-    takeaways: ["Median EV/Revenue multiples for sustainability-positioned fashion fell 61% from 2022 peak to 2025.", "The correction was sharpest in companies with high customer acquisition costs and low retention.", "Investors are repricing growth assumptions where consumer adoption lags the business plan.", "B2B sustainability services have held valuation better."],
-    sources: ["PitchBook — Fashion Tech & Sustainability sector data 2025", "Crunchbase — Funding rounds tracker", "Bloomberg — Sector multiples analysis", "Company filings: Pangaia, Allbirds, Renewlane"],
-    sectors: ["Capital", "Brands", "Consumer", "ESG & Compliance"],
-    gradient: "linear-gradient(135deg,#131313,#1d1d1d)",
-  },
-  {
-    id: "5", slug: "nearshoring-costs",
-    tag: "Manufacturing", read: "7 min read", date: "8 Apr 2026",
-    title: "Nearshoring costs and the trade-off between speed-to-market and carbon footprint at scale",
-    impact: "low", impactLabel: "Low regulatory impact",
-    metric: "Key metric: Nearshored production cost premium vs. Southeast Asia sourcing: 22–40% depending on category",
-    synopsis: "Nearshoring to Southern Europe and North Africa reduces Scope 3 transport emissions and cuts lead times. It also costs significantly more. This piece maps the cost structure and conditions where the economics work.",
-    takeaways: ["Nearshoring premium of 22–40% over Southeast Asia is category-dependent.", "Speed-to-market gains are real: 6–8 week lead time reduction vs. offshore sourcing.", "Brands can justify the premium in high-turn, low-volume categories; not in commodity basics.", "Carbon reduction claims require Scope 3 verification; most brands currently cannot supply this."],
-    sources: ["McKinsey — Reshaping the Supply Chain report 2024", "UNCTAD — Near-shoring and trade report", "ILO — Manufacturing wage benchmarks 2025", "Brand interviews and sourcing data"],
-    sectors: ["Manufacturing", "Brands", "Regulation", "Capital"],
-    gradient: "linear-gradient(135deg,#111,#1c1c1c)",
-  },
-  {
-    id: "6", slug: "rental-fashion-platforms",
-    tag: "Business models", read: "9 min read", date: "20 Apr 2026",
-    title: "Rental fashion platforms rebuilding their unit economics after the post-pandemic contraction",
-    impact: "low", impactLabel: "Low regulatory impact",
-    metric: "Key metric: Rental platform average items-per-subscriber needed to break even: 4.2 items/month",
-    synopsis: "Rental fashion platforms entered the pandemic with growth-stage unit economics and exited it with a retention crisis. The ones still operating have rebuilt their models around a narrower, higher-engagement customer profile.",
-    takeaways: ["Post-pandemic rental platforms average 4.2 items/subscriber/month to reach contribution margin break-even.", "Customer lifetime value models have been rebuilt around subscription tenure, not acquisition volume.", "Platforms that survived exited mass-market positioning and moved upmarket.", "Logistics remains the primary cost lever; platforms without proprietary cleaning infrastructure are at structural disadvantage."],
-    sources: ["Rent the Runway — 10-K filings 2023–2025", "Hirestreet — investor update 2025", "Company interviews", "Euromonitor — Fashion rental market report 2025"],
-    sectors: ["Business models", "Consumer", "Capital", "Retail"],
-    gradient: "linear-gradient(135deg,#090909,#181818)",
-  },
-];
-
-const READING_NOW = ARTICLES_DATA.slice(0, 3);
-
-const FEATURED_ARTICLE = ARTICLES_DATA[3];
-
-const FEATURED_COMPANY = {
-  slug: "veja",
-  name: "Veja",
-  node: "Brands",
-  body: "Veja has built one of the most scrutinised supply chains in fashion. The brand publishes cost breakdowns that few others dare to share. We look at what the numbers reveal about the economics of radical transparency.",
-};
-
+/* ── Fixed value chain nodes (structure never changes) ── */
 const VALUE_CHAIN_NODES = [
-  { num: "01", name: "Raw Materials",      slug: "rawmat" },
-  { num: "02", name: "Yarn & Fabric",      slug: "spinmill" },
+  { num: "01", name: "Raw Materials",      slug: "raw-materials" },
+  { num: "02", name: "Yarn & Fabric",      slug: "yarn-fabric" },
   { num: "03", name: "Manufacturing",      slug: "manufacturing" },
   { num: "04", name: "Brands",             slug: "brands" },
-  { num: "05", name: "Logistics & Retail", slug: "retail" },
+  { num: "05", name: "Logistics & Retail", slug: "logistics-retail" },
   { num: "06", name: "Consumer",           slug: "consumer" },
-  { num: "07", name: "Secondary Market",   slug: "secondary" },
+  { num: "07", name: "Secondary Market",   slug: "secondary-market" },
 ];
 
-export default function HomePage() {
+type SanityArticle = {
+  _id: string;
+  slug: string;
+  title: string;
+  tag: string;
+  readTime?: string;
+  synopsis: string;
+  publishedAt: string;
+  keyTakeaways?: string[];
+  sources?: string[];
+  sectors?: string[];
+  coverImage?: string;
+};
+
+type SanityCompany = {
+  _id: string;
+  slug: string;
+  name: string;
+  modelDescriptor?: string;
+  focus?: string;
+  valueChainNodes?: string[];
+  logo?: string;
+};
+
+function formatArticleForModal(a: SanityArticle) {
+  return {
+    slug: a.slug,
+    title: a.title,
+    tag: a.tag,
+    date: a.publishedAt
+      ? format(new Date(a.publishedAt), "d MMM yyyy")
+      : "",
+    readTime: a.readTime ?? "",
+    synopsis: a.synopsis ?? "",
+    takeaways: a.keyTakeaways ?? [],
+    sources: a.sources ?? [],
+    sectors: a.sectors ?? [],
+  };
+}
+
+export default async function HomePage() {
+  let featuredArticles: SanityArticle[] = [];
+  let companies: SanityCompany[] = [];
+
+  if (isSanityConfigured()) {
+    [featuredArticles, companies] = await Promise.all([
+      client.fetch<SanityArticle[]>(FEATURED_ARTICLES_QUERY),
+      client.fetch<SanityCompany[]>(ALL_COMPANIES_QUERY),
+    ]);
+  }
+
+  const readingNow   = featuredArticles.slice(0, 3);
+  const featuredArticle = featuredArticles[3] ?? featuredArticles[0] ?? null;
+  const featuredCompany = companies[0] ?? null;
+
   return (
     <>
       {/* ══════════════════════════════════════════════════
@@ -131,98 +90,117 @@ export default function HomePage() {
         </p>
         <div className="hero__ctas">
           <Link href="/articles" className="btn btn--primary">Read the latest →</Link>
-          <Link href="/about#contact" className="btn btn--ghost">Get in touch →</Link>
+          <Link href="/contact" className="btn btn--ghost">Get in touch →</Link>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════
-          READING NOW
+          READING NOW — only renders if articles exist
       ══════════════════════════════════════════════════ */}
-      <section className="section" aria-label="Reading now" style={{ borderBottom: "none" }}>
-        <span className="section__label">Reading now</span>
+      {readingNow.length > 0 && (
+        <section className="section" aria-label="Reading now" style={{ borderBottom: "none" }}>
+          <span className="section__label">Reading now</span>
 
-        {/* Row 1: editorial intro (cols 1–2) + 3 article cards (cols 3–5) */}
-        <div className="home-grid__row1">
-          <div className="home-grid__intro">
-            <p className="home-grid__intro-body">
-              Analysis of business models, consumer behaviour, and the economic limits shaping sustainable fashion.
-            </p>
-            <Link href="/articles" className="home-grid__intro-cta link-u">
-              View all →
-            </Link>
+          {/* Row 1: editorial intro + article cards */}
+          <div className="home-grid__row1">
+            <div className="home-grid__intro">
+              <p className="home-grid__intro-body">
+                Analysis of business models, consumer behaviour, and the economic limits shaping sustainable fashion.
+              </p>
+              <Link href="/articles" className="home-grid__intro-cta link-u">
+                View all →
+              </Link>
+            </div>
+
+            <div style={{ display: "contents" }}>
+              {readingNow.map((article) => (
+                <article
+                  key={article._id}
+                  className="card"
+                  aria-label="Open article"
+                  data-article={JSON.stringify(formatArticleForModal(article))}
+                >
+                  <div className="card__img">
+                    {article.coverImage
+                      ? <img src={article.coverImage} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      : <div className="img-ph" />
+                    }
+                  </div>
+                  <div className="card__body">
+                    <div className="card__meta-row">
+                      <span className="card__tag">{article.tag}</span>
+                      {article.readTime && <span className="card__time">{article.readTime}</span>}
+                    </div>
+                    <h3 className="card__title">{article.title}</h3>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
 
-          <div id="reading-now-row1" style={{ display: "contents" }}>
-            {READING_NOW.map((article) => (
+          {/* Row 2: featured article — only if more than 3 exist */}
+          {featuredArticle && (
+            <div className="home-grid__row2">
               <article
-                key={article.id}
-                className="card"
+                className="card card--feat"
                 aria-label="Open article"
-                data-article={JSON.stringify(article)}
+                data-article={JSON.stringify(formatArticleForModal(featuredArticle))}
               >
                 <div className="card__img">
-                  <div className="img-ph" />
-                </div>
-                <div className="card__body">
-                  <div className="card__meta-row">
-                    <span className="card__tag">{article.tag}</span>
-                    <span className="card__time">{article.read}</span>
-                  </div>
-                  <h3 className="card__title">{article.title}</h3>
+                  {featuredArticle.coverImage
+                    ? <img src={featuredArticle.coverImage} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    : <div className="img-ph" />
+                  }
                 </div>
               </article>
-            ))}
-          </div>
-        </div>
-
-        {/* Row 2: large image (3fr) + featured text (2fr) */}
-        <div className="home-grid__row2" id="reading-now-row2">
-          <article
-            className="card card--feat"
-            aria-label="Open article"
-            data-article={JSON.stringify(FEATURED_ARTICLE)}
-          >
-            <div className="card__img">
-              <div className="img-ph" />
+              <div className="featured-text">
+                <span className="featured-text__label">Featured</span>
+                <h2 className="featured-text__title">{featuredArticle.title}</h2>
+                <p className="featured-text__excerpt">{featuredArticle.synopsis}</p>
+                <Link href={`/articles/${featuredArticle.slug}`} className="featured-text__cta link-u">
+                  Read article →
+                </Link>
+              </div>
             </div>
-          </article>
-          <div className="featured-text">
-            <span className="featured-text__label">Featured</span>
-            <h2 className="featured-text__title">{FEATURED_ARTICLE.title}</h2>
-            <p className="featured-text__excerpt">{FEATURED_ARTICLE.synopsis}</p>
-            <Link href={`/articles/${FEATURED_ARTICLE.slug}`} className="featured-text__cta link-u">
-              Read article →
-            </Link>
-          </div>
-        </div>
-      </section>
+          )}
+        </section>
+      )}
 
       {/* ══════════════════════════════════════════════════
-          FEATURED COMPANY
+          FEATURED COMPANY — only renders if companies exist
       ══════════════════════════════════════════════════ */}
-      <section
-        className="section"
-        aria-label="Featured company"
-        style={{ borderBottom: "none", paddingTop: 48, paddingBottom: 48 }}
-      >
-        <p className="company-module__label">From the directory</p>
-        <div className="company-module">
-          <div className="company-module__text">
-            <h2 className="company-module__name">{FEATURED_COMPANY.name}</h2>
-            <p className="company-module__node">{FEATURED_COMPANY.node}</p>
-            <p className="company-module__body">{FEATURED_COMPANY.body}</p>
-            <Link href={`/companies/${FEATURED_COMPANY.slug}`} className="btn btn--ghost">
-              View in directory →
-            </Link>
+      {featuredCompany && (
+        <section
+          className="section"
+          aria-label="Featured company"
+          style={{ borderBottom: "none", paddingTop: 48, paddingBottom: 48 }}
+        >
+          <p className="company-module__label">From the directory</p>
+          <div className="company-module">
+            <div className="company-module__text">
+              <h2 className="company-module__name">{featuredCompany.name}</h2>
+              {featuredCompany.focus && (
+                <p className="company-module__node">{featuredCompany.focus}</p>
+              )}
+              {featuredCompany.modelDescriptor && (
+                <p className="company-module__body">{featuredCompany.modelDescriptor}</p>
+              )}
+              <Link href={`/companies/${featuredCompany.slug}`} className="btn btn--ghost">
+                View in directory →
+              </Link>
+            </div>
+            <div className="company-module__img">
+              {featuredCompany.logo
+                ? <img src={featuredCompany.logo} alt={featuredCompany.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                : <div className="img-ph" />
+              }
+            </div>
           </div>
-          <div className="company-module__img">
-            <div className="img-ph" />
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ══════════════════════════════════════════════════
-          REGULATION IN FOCUS
+          REGULATION IN FOCUS — real static content
       ══════════════════════════════════════════════════ */}
       <section
         className="section"
@@ -252,9 +230,7 @@ export default function HomePage() {
           <div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
               <div>
-                <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>
-                  Also in force
-                </span>
+                <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>Also in force</span>
                 <div className="regulation-list">
                   <span className="regulation-list__item">
                     <span className="status-badge__dot status-badge__dot--active" style={{ flexShrink: 0, marginTop: 6 }} />
@@ -271,9 +247,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div>
-                <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>
-                  In preparation
-                </span>
+                <span className="eyebrow" style={{ display: "block", marginBottom: 16 }}>In preparation</span>
                 <div className="regulation-list">
                   <span className="regulation-list__item">
                     <span className="status-badge__dot status-badge__dot--prep" style={{ flexShrink: 0, marginTop: 6 }} />
@@ -298,7 +272,7 @@ export default function HomePage() {
       </div>
 
       {/* ══════════════════════════════════════════════════
-          VALUE CHAIN PREVIEW
+          VALUE CHAIN PREVIEW — fixed structure, always shows
       ══════════════════════════════════════════════════ */}
       <section className="section" aria-label="Value chain" style={{ borderBottom: "none" }}>
         <div className="vc-header">
@@ -307,7 +281,7 @@ export default function HomePage() {
               The fashion value chain
             </h2>
             <p className="section__subhead">
-              Six nodes from raw materials to the secondary market. Click any node to see the companies, regulations, and analysis that touch it.
+              Seven nodes from raw materials to the secondary market. Click any node to see the companies, regulations, and analysis that touch it.
             </p>
           </div>
           <Link href="/value-chain" className="btn btn--ghost" style={{ flexShrink: 0 }}>

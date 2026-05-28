@@ -1,123 +1,104 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
+import { ALL_COMPANIES_QUERY } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Companies — Prefall",
   description:
-    "An analytical directory of companies across the fashion value chain — business models, economics, and regulatory exposure.",
+    "The Prefall directory. Companies operating across the fashion value chain, profiled for their business model, economics, and regulatory exposure.",
 };
 
-export default function CompaniesPage() {
+type SanityCompany = {
+  _id: string;
+  slug: string;
+  name: string;
+  modelDescriptor?: string;
+  focus?: string;
+  valueChainNodes?: string[];
+  logo?: string;
+};
+
+/* Map node slug → display label for filter buttons */
+const NODE_LABELS: Record<string, string> = {
+  "raw-materials":    "Raw Materials",
+  "yarn-fabric":      "Yarn & Fabric",
+  "manufacturing":    "Manufacturing",
+  "brands":           "Brands",
+  "logistics-retail": "Logistics & Retail",
+  "consumer":         "Consumer",
+  "secondary-market": "Secondary Market",
+};
+
+export default async function CompaniesPage() {
+  let companies: SanityCompany[] = [];
+
+  if (isSanityConfigured()) {
+    companies = await client.fetch<SanityCompany[]>(ALL_COMPANIES_QUERY);
+  }
+
   return (
     <>
-      {/* Page header */}
       <div className="page-header">
         <h1 className="page-header__heading">Companies</h1>
         <p className="page-header__subhead">
-          An analytical directory of companies operating across the fashion value chain. Each entry
-          describes the business model, sets out the economic logic it runs on, and maps the
-          regulatory exposure that shapes its future.
+          Companies operating across fashion&apos;s value chain, profiled for their business model,
+          the economics behind it, and the regulatory exposure that shapes their future.
         </p>
-        {/* Mobile filter — hidden on desktop, shown ≤768px */}
-        <div className="co-filter-wrap">
-          <button className="co-filter-trigger" id="co-filter-trigger">
-            <span id="co-filter-label">All categories</span>
-            <span className="co-filter-icon">+</span>
-          </button>
-          <div className="co-filter-panel" id="co-filter-panel">
-            <button className="co-filter-option is-active" data-filter="all">All</button>
-            <button className="co-filter-option" data-filter="raw-materials">Raw Materials</button>
-            <button className="co-filter-option" data-filter="yarn-fabric">Yarn &amp; Fabric</button>
-            <button className="co-filter-option" data-filter="manufacturing">Manufacturing</button>
-            <button className="co-filter-option" data-filter="brands">Brands</button>
-            <button className="co-filter-option" data-filter="retail">Retail</button>
-            <button className="co-filter-option" data-filter="secondary-market">Secondary Market</button>
-          </div>
-        </div>
       </div>
 
       <section className="section" aria-label="Company directory">
 
-        {/* Filter controls — desktop */}
+        {/* Filters */}
         <div className="issues-controls">
-          <div className="filter-bar">
+          <div className="filter-bar" aria-label="Filter by node">
             <span className="eyebrow" style={{ marginRight: 6 }}>Filter by</span>
             <button className="filter-btn is-active" data-filter="all">All</button>
-            <button className="filter-btn" data-filter="raw-materials">Raw Materials</button>
-            <button className="filter-btn" data-filter="yarn-fabric">Yarn &amp; Fabric</button>
-            <button className="filter-btn" data-filter="manufacturing">Manufacturing</button>
-            <button className="filter-btn" data-filter="brands">Brands</button>
-            <button className="filter-btn" data-filter="retail">Retail</button>
-            <button className="filter-btn" data-filter="secondary-market">Secondary Market</button>
+            {Object.entries(NODE_LABELS).map(([slug, label]) => (
+              <button key={slug} className="filter-btn" data-filter={slug}>{label}</button>
+            ))}
           </div>
         </div>
 
-        {/* Company grid */}
-        <div className="companies-grid" id="companies-grid">
-
-          {/* Vestiaire Collective */}
-          <a className="company-card" href="/companies/vestiaire-collective" data-node="secondary-market">
-            <div className="company-card__logo-wrap">
-              <div className="img-ph" />
-            </div>
-            <div className="company-card__body">
-              <p className="company-card__name">Vestiaire Collective</p>
-              <p className="company-card__meta">Paris, France · Secondary Market</p>
-              <p className="company-card__model">
-                Global resale marketplace for pre-owned premium and luxury fashion. Asset-light:
-                earns commission and authentication fees without holding inventory. Founded 2009,
-                raised over $700M USD, targeting first annual profit in 2026.
-              </p>
-              <span className="node-tag" data-node="secondary-market">Secondary Market</span>
-            </div>
-          </a>
-
-          {/* Veja */}
-          <a className="company-card" href="/companies/veja" data-node="brands">
-            <div className="company-card__logo-wrap">
-              <div className="img-ph" />
-            </div>
-            <div className="company-card__body">
-              <p className="company-card__name">Veja</p>
-              <p className="company-card__meta">Paris, France · Brands</p>
-              <p className="company-card__model">
-                Sneaker brand that routes advertising spend directly into fair-trade raw materials.
-                No paid media. Production costs 5–7× conventional competitors at factory stage,
-                offset by the absence of marketing. ~€250M turnover in 2024.
-              </p>
-              <span className="node-tag" data-node="brands">Brands</span>
-            </div>
-          </a>
-
-          {/* Circulose */}
-          <a className="company-card" href="/companies/circulose" data-node="yarn-fabric">
-            <div className="company-card__logo-wrap">
-              <div className="img-ph" />
-            </div>
-            <div className="company-card__body">
-              <p className="company-card__name">Circulose</p>
-              <p className="company-card__meta">Stockholm, Sweden · Yarn &amp; Fabric</p>
-              <p className="company-card__model">
-                Produces dissolving pulp from cotton-rich textile waste as a substitute for virgin
-                wood pulp in viscose and lyocell production. Formerly Renewcell, acquired out of
-                bankruptcy in 2024 by Altor Equity Partners. Production restart Q4 2026.
-              </p>
-              <span className="node-tag" data-node="yarn-fabric">Yarn &amp; Fabric</span>
-            </div>
-          </a>
-
-        </div>
-
-        {/* Methodology note */}
-        <div className="method-note">
-          <p className="method-note__heading">How this directory works</p>
-          <p className="method-note__body">
-            Inclusion is an editorial decision based on a company&apos;s relevance to the transition
-            of the fashion industry. We do not score, rank, or rate companies on sustainability
-            performance. We describe how their business model works, what the company says about
-            itself, what we make of the economics of the model, and the publicly verifiable signals
-            available. Each entry is updated when material changes happen.
-          </p>
-        </div>
+        {companies.length === 0 ? (
+          <div className="companies-empty">
+            <p className="companies-empty__text">No companies in the directory yet.</p>
+          </div>
+        ) : (
+          <div className="companies-grid" id="companies-grid">
+            {companies.map((c) => (
+              <Link
+                key={c._id}
+                href={`/companies/${c.slug}`}
+                className="company-card"
+                data-node={c.valueChainNodes?.[0] ?? ""}
+              >
+                <div className="company-card__logo">
+                  {c.logo
+                    ? <img src={c.logo} alt={c.name} />
+                    : <div className="company-card__logo-ph">{c.name[0]}</div>
+                  }
+                </div>
+                <div className="company-card__body">
+                  <p className="company-card__name">{c.name}</p>
+                  {c.focus && <p className="company-card__focus">{c.focus}</p>}
+                  {c.modelDescriptor && (
+                    <p className="company-card__desc">{c.modelDescriptor}</p>
+                  )}
+                </div>
+                {c.valueChainNodes && c.valueChainNodes.length > 0 && (
+                  <div className="company-card__nodes">
+                    {c.valueChainNodes.map((n) => (
+                      <span key={n} className="company-card__node-tag">
+                        {NODE_LABELS[n] ?? n}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
+        )}
 
       </section>
     </>

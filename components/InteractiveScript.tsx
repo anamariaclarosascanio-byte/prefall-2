@@ -13,6 +13,88 @@ export function InteractiveScript() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // ── Article modal ─────────────────────────────────────────────────────────
+    const modalOverlay = document.getElementById('modal') as HTMLElement | null;
+
+    function openModal(data: {
+      slug: string; date: string; title: string; tag: string;
+      impact: string; impactLabel: string; metric: string;
+      synopsis: string; takeaways: string[]; sources: string[]; sectors: string[];
+      gradient?: string;
+    }) {
+      if (!modalOverlay) return;
+
+      // Image (gradient placeholder)
+      const mainImg = document.getElementById('modal-main-img');
+      if (mainImg) mainImg.style.background = data.gradient || 'linear-gradient(135deg,#141414,#222)';
+
+      // Thumbnails
+      modalOverlay.querySelectorAll<HTMLElement>('.modal__thumb').forEach(t => {
+        t.style.background = data.gradient || 'linear-gradient(135deg,#141414,#222)';
+      });
+
+      // Metadata
+      const dateEl   = document.getElementById('modal-date');
+      const titleEl  = document.getElementById('modal-title');
+      const dotEl    = document.getElementById('modal-impact-dot');
+      const labelEl  = document.getElementById('modal-impact-label');
+      const metricEl = document.getElementById('modal-metric');
+      if (dateEl)   dateEl.textContent  = data.date;
+      if (titleEl)  titleEl.textContent = data.title;
+      if (dotEl)    { dotEl.className = `impact-dot impact-dot--${data.impact}`; }
+      if (labelEl)  labelEl.textContent = data.impactLabel;
+      if (metricEl) metricEl.textContent = data.metric;
+
+      // Body sections
+      const synopsisEl   = document.getElementById('modal-synopsis');
+      const takeawaysEl  = document.getElementById('modal-takeaways');
+      const sourcesEl    = document.getElementById('modal-sources');
+      const sectorsEl    = document.getElementById('modal-sectors');
+      if (synopsisEl)  synopsisEl.textContent = data.synopsis;
+      if (takeawaysEl) takeawaysEl.innerHTML  = data.takeaways.map(t => `<li>${t}</li>`).join('');
+      if (sourcesEl)   sourcesEl.innerHTML    = data.sources.map(s => `<li>${s}</li>`).join('');
+      if (sectorsEl)   sectorsEl.innerHTML    = data.sectors.map(s => `<span class="sector-tag">${s}</span>`).join('');
+
+      // CTA
+      const cta = document.getElementById('modal-cta') as HTMLAnchorElement | null;
+      if (cta) cta.href = `/articles/${data.slug}`;
+
+      modalOverlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      if (!modalOverlay) return;
+      modalOverlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    // Close on overlay background click
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+      });
+    }
+
+    // Close button
+    const closeBtn = document.getElementById('modal-close-btn');
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    // Escape key
+    function handleEsc(e: KeyboardEvent) { if (e.key === 'Escape') closeModal(); }
+    document.addEventListener('keydown', handleEsc);
+
+    // Wire up all cards with data-article attribute
+    document.querySelectorAll<HTMLElement>('[data-article]').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        try {
+          const data = JSON.parse(card.dataset.article || '{}');
+          openModal(data);
+        } catch { /* ignore malformed JSON */ }
+      });
+    });
+
     // ── Article / company filter buttons ─────────────────────────────────────
     function filterCards(btn: HTMLElement) {
       const filter = btn.dataset.filter;
@@ -163,6 +245,9 @@ export function InteractiveScript() {
       });
     });
 
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
   }, [pathname]); // re-run on route change
 
   return null;

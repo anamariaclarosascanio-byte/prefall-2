@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { InteractiveScript } from "@/components/InteractiveScript";
+import { ArticleModal } from "@/components/ArticleModal";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -54,6 +55,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <ArticleModal />
         <InteractiveScript />
       </body>
     </html>

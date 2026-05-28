@@ -129,6 +129,26 @@ export function InteractiveScript() {
       });
     });
 
+    // ── Sources accordion (article page) ─────────────────────────────────────
+    const sourcesBtn = document.getElementById('article-sources-btn');
+    const sourcesBody = document.getElementById('article-sources');
+    if (sourcesBtn && sourcesBody) {
+      sourcesBtn.addEventListener('click', () => {
+        sourcesBtn.classList.toggle('is-open');
+        sourcesBody.classList.toggle('is-open');
+      });
+    }
+
+    // ── Related carousel navigation (article page) ────────────────────────────
+    const relatedGrid = document.getElementById('related-grid') as HTMLElement | null;
+    document.querySelectorAll('.related-nav-btn').forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        if (!relatedGrid) return;
+        const cardW = (relatedGrid.firstElementChild as HTMLElement)?.offsetWidth || 0;
+        relatedGrid.scrollBy({ left: idx === 0 ? -cardW : cardW, behavior: 'smooth' });
+      });
+    });
+
     // ── Scroll-to-section helper (anchor links in VC node sidebar) ────────────
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', (e: Event) => {

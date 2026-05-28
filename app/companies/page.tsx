@@ -55,7 +55,7 @@ export default function CompaniesPage() {
         <div className="companies-grid" id="companies-grid">
 
           {/* Vestiaire Collective */}
-          <a className="company-card" href="#" data-node="secondary-market">
+          <a className="company-card" href="/companies/vestiaire-collective" data-node="secondary-market">
             <div className="company-card__logo-wrap">
               <div className="img-ph" />
             </div>
@@ -72,7 +72,7 @@ export default function CompaniesPage() {
           </a>
 
           {/* Veja */}
-          <a className="company-card" href="#" data-node="brands">
+          <a className="company-card" href="/companies/veja" data-node="brands">
             <div className="company-card__logo-wrap">
               <div className="img-ph" />
             </div>
@@ -89,7 +89,7 @@ export default function CompaniesPage() {
           </a>
 
           {/* Circulose */}
-          <a className="company-card" href="#" data-node="yarn-fabric">
+          <a className="company-card" href="/companies/circulose" data-node="yarn-fabric">
             <div className="company-card__logo-wrap">
               <div className="img-ph" />
             </div>

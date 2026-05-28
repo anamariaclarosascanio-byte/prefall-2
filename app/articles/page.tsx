@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -45,7 +46,7 @@ export default function ArticlesPage() {
 
         {/* Block B1: 1fr | 2fr | 1fr */}
         <div className="block-b1" style={{ marginBottom: 20 }}>
-          <article className="card" data-category="business-models">
+          <Link href="/articles/resale-platforms-unit-economics" className="card" data-category="business-models" style={{ textDecoration: "none" }}>
             <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#141414,#202020)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
@@ -54,9 +55,9 @@ export default function ArticlesPage() {
               </div>
               <h3 className="card__title">Resale platforms and the unit economics that determine whether the model works at scale</h3>
             </div>
-          </article>
+          </Link>
 
-          <article className="card card--big" data-category="regulation">
+          <Link href="/articles/csrd-reporting-burden" className="card card--big" data-category="regulation" style={{ textDecoration: "none" }}>
             <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#0a0a0a,#1e1e1e)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
@@ -65,9 +66,9 @@ export default function ArticlesPage() {
               </div>
               <h3 className="card__title">The CSRD reporting burden and what it actually costs a mid-size fashion brand to comply</h3>
             </div>
-          </article>
+          </Link>
 
-          <article className="card" data-category="consumer-behaviour">
+          <Link href="/articles/consumer-behaviour-gap" className="card" data-category="consumer-behaviour" style={{ textDecoration: "none" }}>
             <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#0e0e0e,#1a1a1a)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
@@ -76,12 +77,12 @@ export default function ArticlesPage() {
               </div>
               <h3 className="card__title">The gap between stated intention and purchasing behaviour in sustainable fashion</h3>
             </div>
-          </article>
+          </Link>
         </div>
 
         {/* Block B2: 1fr | 1fr | 2fr */}
         <div className="block-b2" style={{ marginBottom: 20 }}>
-          <article className="card" data-category="capital">
+          <Link href="/articles/valuation-correction" className="card" data-category="capital" style={{ textDecoration: "none" }}>
             <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#131313,#1d1d1d)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
@@ -90,9 +91,9 @@ export default function ArticlesPage() {
               </div>
               <h3 className="card__title">The valuation correction in sustainable fashion</h3>
             </div>
-          </article>
+          </Link>
 
-          <article className="card" data-category="manufacturing">
+          <Link href="/articles/nearshoring-costs" className="card" data-category="manufacturing" style={{ textDecoration: "none" }}>
             <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#111,#1c1c1c)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
@@ -101,9 +102,9 @@ export default function ArticlesPage() {
               </div>
               <h3 className="card__title">Nearshoring costs and the speed-to-market trade-off</h3>
             </div>
-          </article>
+          </Link>
 
-          <article className="card card--big" data-category="business-models">
+          <Link href="/articles/rental-fashion-platforms" className="card card--big" data-category="business-models" style={{ textDecoration: "none" }}>
             <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#090909,#181818)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
@@ -112,12 +113,12 @@ export default function ArticlesPage() {
               </div>
               <h3 className="card__title">Rental fashion platforms rebuilding their unit economics after the post-pandemic contraction</h3>
             </div>
-          </article>
+          </Link>
         </div>
 
         {/* Block B3: 4 equal */}
         <div className="block-b3">
-          <article className="card" data-category="regulation">
+          <Link href="/articles/espr-fast-product-cycles" className="card" data-category="regulation" style={{ textDecoration: "none" }}>
             <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#121212,#1e1e1e)" }} /></div>
             <div className="card__body">
               <div className="card__meta-row">
@@ -126,7 +127,7 @@ export default function ArticlesPage() {
               </div>
               <h3 className="card__title">What ESPR means for brands that built their model on fast product cycles</h3>
             </div>
-          </article>
+          </Link>
 
           <article className="card" data-category="consumer-behaviour">
             <div className="card__img"><div className="img-ph" style={{ background: "linear-gradient(135deg,#101010,#1b1b1b)" }} /></div>

@@ -1,34 +1,39 @@
 import Link from "next/link";
 
-/* ── Placeholder articles (will come from Sanity) ── */
+/* ── Articles (matches prototype reading-now) ── */
 const READING_NOW = [
   {
     id: "1",
+    slug: "resale-platforms-unit-economics",
     tag: "Business Models",
     read: "8 min",
-    title: "Why resale isn't the silver bullet brands hoped for",
+    title: "Resale platforms and the unit economics that determine whether the model works at scale",
   },
   {
     id: "2",
+    slug: "espr-fast-product-cycles",
     tag: "Regulation",
-    read: "6 min",
-    title: "CSRD: what the first wave of reports actually revealed",
+    read: "11 min",
+    title: "What ESPR means for brands that built their model on fast product cycles",
   },
   {
     id: "3",
-    tag: "Consumer",
-    read: "5 min",
-    title: "The affordability ceiling and the sustainability premium",
+    slug: "consumer-behaviour-gap",
+    tag: "Consumer behaviour",
+    read: "14 min",
+    title: "The gap between stated intention and purchasing behaviour in sustainable fashion",
   },
 ];
 
 const FEATURED_ARTICLE = {
-  title: "The secondhand market's unit economics problem",
+  slug: "csrd-reporting-burden",
+  title: "The CSRD reporting burden and what it actually costs a mid-size fashion brand to comply",
   excerpt:
-    "Resale platforms promised margin-positive circularity. Three years of data across six platforms shows the economics only work at scale — and most brands are not at scale.",
+    "The CSRD creates a two-speed market inside fashion: incumbents absorb it at marginal cost while mid-size brands face a step-change in fixed overhead that changes unit economics before the first report is filed.",
 };
 
 const FEATURED_COMPANY = {
+  slug: "veja",
   name: "Veja",
   node: "Brands",
   body: "Veja has built one of the most scrutinised supply chains in fashion. The brand publishes cost breakdowns that few others dare to share. We look at what the numbers reveal about the economics of radical transparency.",
@@ -89,7 +94,7 @@ export default function HomePage() {
 
           <div id="reading-now-row1" style={{ display: "contents" }}>
             {READING_NOW.map((article) => (
-              <article key={article.id} className="card" aria-label="Open article">
+              <Link key={article.id} href={`/articles/${article.slug}`} className="card" style={{ textDecoration: "none" }} aria-label="Open article">
                 <div className="card__img">
                   <div className="img-ph" />
                 </div>
@@ -100,23 +105,23 @@ export default function HomePage() {
                   </div>
                   <h3 className="card__title">{article.title}</h3>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
 
         {/* Row 2: large image (3fr) + featured text (2fr) */}
         <div className="home-grid__row2" id="reading-now-row2">
-          <article className="card card--feat" aria-label="Open article">
+          <Link href={`/articles/${FEATURED_ARTICLE.slug}`} className="card card--feat" style={{ textDecoration: "none" }} aria-label="Open article">
             <div className="card__img">
               <div className="img-ph" />
             </div>
-          </article>
+          </Link>
           <div className="featured-text">
             <span className="featured-text__label">Featured</span>
             <h2 className="featured-text__title">{FEATURED_ARTICLE.title}</h2>
             <p className="featured-text__excerpt">{FEATURED_ARTICLE.excerpt}</p>
-            <Link href="/articles" className="featured-text__cta link-u">
+            <Link href={`/articles/${FEATURED_ARTICLE.slug}`} className="featured-text__cta link-u">
               Read article →
             </Link>
           </div>
@@ -137,7 +142,7 @@ export default function HomePage() {
             <h2 className="company-module__name">{FEATURED_COMPANY.name}</h2>
             <p className="company-module__node">{FEATURED_COMPANY.node}</p>
             <p className="company-module__body">{FEATURED_COMPANY.body}</p>
-            <Link href="/companies" className="btn btn--ghost">
+            <Link href={`/companies/${FEATURED_COMPANY.slug}`} className="btn btn--ghost">
               View in directory →
             </Link>
           </div>

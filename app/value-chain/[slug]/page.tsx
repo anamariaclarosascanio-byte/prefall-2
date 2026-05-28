@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+// ── Company name → slug lookup (known directory entries) ─────────────────────
+const COMPANY_SLUG: Record<string, string> = {
+  "Vestiaire Collective": "vestiaire-collective",
+  "Veja": "veja",
+  "Circulose": "circulose",
+};
+
 // ── Node data (exact copy of prototype NODE_DETAIL) ──────────────────────────
 interface NodeReg { name: string; summary: string; badge: string; status: string; }
 interface NodeCompany { name: string; meta: string; model: string; tag: string; }
@@ -271,7 +278,7 @@ export default async function ValueChainNodePage({ params }: { params: Promise<{
               <p className="detail-body__section-head">Companies operating here</p>
               <div className="companies-grid">
                 {node.companies.map(c => (
-                  <Link key={c.name} href="/companies" className="company-card">
+                  <Link key={c.name} href={COMPANY_SLUG[c.name] ? `/companies/${COMPANY_SLUG[c.name]}` : "/companies"} className="company-card">
                     <div className="company-card__logo-wrap"><div className="img-ph" /></div>
                     <div className="company-card__body">
                       <p className="company-card__name">{c.name}</p>
@@ -304,7 +311,7 @@ export default async function ValueChainNodePage({ params }: { params: Promise<{
               <div className="related-carousel">
                 <div className="related-grid">
                   {node.articles.map((a, ai) => (
-                    <article key={a.title} className="card" style={{ cursor: "pointer" }}>
+                    <Link key={a.title} href="/articles" className="card" style={{ textDecoration: "none" }}>
                       <div className="card__img"><div className="img-ph" style={{ background: BG_GRADS[ai % BG_GRADS.length] }} /></div>
                       <div className="card__body">
                         <div className="card__meta-row">
@@ -313,7 +320,7 @@ export default async function ValueChainNodePage({ params }: { params: Promise<{
                         </div>
                         <h3 className="card__title">{a.title}</h3>
                       </div>
-                    </article>
+                    </Link>
                   ))}
                 </div>
               </div>

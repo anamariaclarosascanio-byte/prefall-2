@@ -22,16 +22,6 @@ type SanityJob = {
   postedAt: string;
 };
 
-const NODE_LABELS: Record<string, string> = {
-  "raw-materials":    "Raw Materials",
-  "yarn-fabric":      "Yarn & Fabric",
-  "manufacturing":    "Manufacturing",
-  "brands":           "Brands",
-  "logistics-retail": "Logistics & Retail",
-  "consumer":         "Consumer",
-  "secondary-market": "Secondary Market",
-};
-
 export default async function JobsPage() {
   let jobs: SanityJob[] = [];
 
@@ -41,15 +31,31 @@ export default async function JobsPage() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="page-header" style={{ borderBottom: "none", paddingBottom: 32 }}>
         <h1 className="page-header__heading">Jobs</h1>
         <p className="page-header__subhead">
-          Roles at the intersection of fashion and sustainability. Curated listings from companies
-          operating across the value chain.
+          A curated selection of open roles in sustainability, ESG, circularity, regulation, and impact functions across the fashion industry. Browse, filter, and apply directly through the listing company.
         </p>
+        <p style={{ fontSize: "var(--t-small)", color: "var(--gray)", marginTop: 16 }}>Prefall does not handle applications.</p>
       </div>
 
-      <section className="section" aria-label="Job listings">
+      <section className="section" aria-label="Job listings" style={{ paddingTop: 28 }}>
+        <div className="issues-controls">
+          <div className="filter-bar" aria-label="Filter by category">
+            <span className="eyebrow" style={{ marginRight: 6 }}>Filter by</span>
+            <button className="filter-btn is-active" data-filter="all">All</button>
+            <button className="filter-btn" data-filter="esg">ESG &amp; Compliance</button>
+            <button className="filter-btn" data-filter="sustainability">Sustainability</button>
+            <button className="filter-btn" data-filter="regulation">Regulation</button>
+            <button className="filter-btn" data-filter="circularity">Circularity</button>
+          </div>
+          <div className="sort-bar">
+            <span className="sort-bar__label">Sort</span>
+            <button className="sort-btn is-active">Newest</button>
+            <button className="sort-btn">Expiring soon</button>
+          </div>
+        </div>
+
         {jobs.length === 0 ? (
           <div className="jobs-empty">
             <p className="jobs-empty__text">No active listings at the moment.</p>
@@ -60,7 +66,7 @@ export default async function JobsPage() {
             </p>
           </div>
         ) : (
-          <div className="jobs-list">
+          <div className="jobs-grid">
             {jobs.map((job) => (
               <a
                 key={job._id}
@@ -68,25 +74,29 @@ export default async function JobsPage() {
                 target={job.applyUrl ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 className="job-item"
+                data-category={job.tags?.[0] ?? ""}
               >
-                <div className="job-item__main">
-                  <p className="job-item__role">{job.role}</p>
-                  <p className="job-item__company">{job.company}</p>
-                  {job.location && (
-                    <p className="job-item__location">{job.location}</p>
-                  )}
+                <div>
+                  <div className="job-item__title-row">
+                    <p className="job-item__role">{job.role}</p>
+                    {job.seniority && (
+                      <span className={`seniority-tag seniority-tag--${job.seniority === "Senior" ? "senior" : job.seniority === "Junior" ? "junior" : "mid"}`}>
+                        {job.seniority}
+                      </span>
+                    )}
+                  </div>
+                  <div className="job-item__meta">
+                    <span>{job.company}</span>
+                    {job.location && (
+                      <>
+                        <span className="card__dot"></span>
+                        <span>{job.location}</span>
+                      </>
+                    )}
+                  </div>
                 </div>
-                <div className="job-item__meta">
-                  {job.type && <span className="job-item__tag">{job.type}</span>}
-                  {job.seniority && <span className="job-item__tag">{job.seniority}</span>}
-                  {job.valueChainNode && (
-                    <span className="job-item__tag job-item__tag--node">
-                      {NODE_LABELS[job.valueChainNode] ?? job.valueChainNode}
-                    </span>
-                  )}
-                  <span className="job-item__date">
-                    {format(new Date(job.postedAt), "d MMM yyyy")}
-                  </span>
+                <div className="job-item__right">
+                  Posted {format(new Date(job.postedAt), "d MMM yyyy")}
                 </div>
               </a>
             ))}

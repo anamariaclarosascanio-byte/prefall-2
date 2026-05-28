@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 
 const VALUE_CHAIN_NODES = [
   {
-    num: "01", slug: "rawmat", name: "Raw Materials",
+    num: "01", slug: "raw-materials", name: "Raw Materials",
     desc: "Cotton, wool, and synthetic fibres. The chain's biggest environmental cost, the smallest direct regulatory footprint.",
   },
   {
-    num: "02", slug: "spinmill", name: "Yarn & Fabric",
+    num: "02", slug: "yarn-fabric", name: "Yarn & Fabric",
     desc: "Spinning, weaving, dyeing. Where raw fibre becomes usable material — and where water pollution concentrates.",
   },
   {
@@ -26,7 +26,7 @@ const VALUE_CHAIN_NODES = [
     desc: "Where the product brief is set and the regulatory obligation lands. The highest-margin, highest-obligation node.",
   },
   {
-    num: "05", slug: "retail", name: "Logistics & Retail",
+    num: "05", slug: "logistics-retail", name: "Logistics & Retail",
     desc: "Physical and digital channels to the first buyer. DPP display requirements and EPR collection duties land here.",
   },
   {
@@ -34,7 +34,7 @@ const VALUE_CHAIN_NODES = [
     desc: "The end-user: the only actor whose behaviour determines whether the sustainability logic of the chain closes.",
   },
   {
-    num: "07", slug: "secondary", name: "Secondary Market",
+    num: "07", slug: "secondary-market", name: "Secondary Market",
     desc: "Resale, rental, repair. The fastest-growing segment by transaction volume, and the hardest to make profitable.",
   },
 ];

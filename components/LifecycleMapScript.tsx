@@ -300,10 +300,10 @@ export function LifecycleMapScript() {
         lcEl('line', { x1: '0', y1: '0', x2: String(SVG_W), y2: '0', stroke: HDR_LINE_COL, 'stroke-width': '1' }, svg);
         lcEl('line', { x1: '0', y1: String(HEADER_H), x2: String(SVG_W), y2: String(HEADER_H), stroke: HDR_LINE_COL, 'stroke-width': '1' }, svg);
         [
-          { num: '01', name: 'Raw Materials', id: 'rawmat' }, { num: '02', name: 'Yarn & Fabric', id: 'spinmill' },
+          { num: '01', name: 'Raw Materials', id: 'raw-materials' }, { num: '02', name: 'Yarn & Fabric', id: 'yarn-fabric' },
           { num: '03', name: 'Manufacturing', id: 'manufacturing' }, { num: '04', name: 'Brands', id: 'brands' },
-          { num: '05', name: 'Logistics & Retail', id: 'retail' }, { num: '06', name: 'Consumer', id: 'consumer' },
-          { num: '07', name: 'Secondary Market', id: 'secondary' },
+          { num: '05', name: 'Logistics & Retail', id: 'logistics-retail' }, { num: '06', name: 'Consumer', id: 'consumer' },
+          { num: '07', name: 'Secondary Market', id: 'secondary-market' },
         ].forEach((n, i) => {
           const x0 = i * SEG_W;
           const gh = lcEl('g', { style: 'cursor:pointer' }, svg);
@@ -345,7 +345,7 @@ export function LifecycleMapScript() {
         const cx = SEG_CX(z.seg);
         let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
         circles.forEach(c => { minX = Math.min(minX, c.cx! - c.r); maxX = Math.max(maxX, c.cx! + c.r); minY = Math.min(minY, c.cy! - c.r); maxY = Math.max(maxY, c.cy! + c.r); });
-        const nodeId = z.id === 'consumer' ? 'retail' : z.id;
+        const nodeId = z.id === 'spinmill' ? 'yarn-fabric' : z.id === 'rawmat' ? 'raw-materials' : z.id === 'retail' ? 'logistics-retail' : z.id === 'secondary' ? 'secondary-market' : z.id;
         const gStyle = (isFirst ? 'opacity:0;' : '') + 'cursor:pointer;';
         const g = lcEl('g', { transform: `translate(${cx},${CHAIN_Y})`, style: gStyle }, svg);
         g.addEventListener('click', () => showNode(nodeId));
@@ -422,7 +422,7 @@ export function LifecycleMapScript() {
         const nr = n.size, fill = getFill(n.id, layer, true);
         const gStyle = (isFirst ? 'opacity:0;' : '') + 'cursor:pointer;';
         const g = lcEl('g', { style: gStyle }, svg);
-        g.addEventListener('click', () => showNode('secondary'));
+        g.addEventListener('click', () => showNode('secondary-market'));
         if (isFirst) lcZoneGroups.push({ el: g, i: ZONES.length });
         lcEl('circle', { cx: String(POST_CX), cy: String(n.y), r: String(nr + 10), fill, 'fill-opacity': '0.12' }, g);
         lcEl('circle', { cx: String(POST_CX), cy: String(n.y), r: String(nr), fill: '#ffffff', 'fill-opacity': '1' }, g);

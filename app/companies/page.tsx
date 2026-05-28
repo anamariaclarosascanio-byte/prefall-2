@@ -42,8 +42,7 @@ export default async function CompaniesPage() {
       <div className="page-header">
         <h1 className="page-header__heading">Companies</h1>
         <p className="page-header__subhead">
-          Companies operating across fashion&apos;s value chain, profiled for their business model,
-          the economics behind it, and the regulatory exposure that shapes their future.
+          An analytical directory of companies operating across the fashion value chain. Each entry describes the business model, sets out the economic logic it runs on, and maps the regulatory exposure that shapes its future.
         </p>
       </div>
 
@@ -73,32 +72,37 @@ export default async function CompaniesPage() {
                 className="company-card"
                 data-node={c.valueChainNodes?.[0] ?? ""}
               >
-                <div className="company-card__logo">
+                <div className="company-card__logo-wrap">
                   {c.logo
-                    ? <img src={c.logo} alt={c.name} />
-                    : <div className="company-card__logo-ph">{c.name[0]}</div>
+                    ? <img src={c.logo} alt={c.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    : <div className="img-ph" />
                   }
                 </div>
                 <div className="company-card__body">
                   <p className="company-card__name">{c.name}</p>
-                  {c.focus && <p className="company-card__focus">{c.focus}</p>}
+                  {c.focus && <p className="company-card__meta">{c.focus}</p>}
                   {c.modelDescriptor && (
-                    <p className="company-card__desc">{c.modelDescriptor}</p>
+                    <p className="company-card__model">{c.modelDescriptor}</p>
+                  )}
+                  {c.valueChainNodes && c.valueChainNodes.length > 0 && (
+                    <>
+                      {c.valueChainNodes.map((n) => (
+                        <span key={n} className="node-tag" data-node={n}>
+                          {NODE_LABELS[n] ?? n}
+                        </span>
+                      ))}
+                    </>
                   )}
                 </div>
-                {c.valueChainNodes && c.valueChainNodes.length > 0 && (
-                  <div className="company-card__nodes">
-                    {c.valueChainNodes.map((n) => (
-                      <span key={n} className="company-card__node-tag">
-                        {NODE_LABELS[n] ?? n}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </Link>
             ))}
           </div>
         )}
+
+        <div className="method-note">
+          <p className="method-note__heading">How this directory works</p>
+          <p className="method-note__body">Inclusion is an editorial decision based on a company&apos;s relevance to the transition of the fashion industry. We do not score, rank, or rate companies on sustainability performance. We describe how their business model works, what the company says about itself, what we make of the economics of the model, and the publicly verifiable signals available. Each entry is updated when material changes happen.</p>
+        </div>
 
       </section>
     </>

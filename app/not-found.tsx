@@ -7,41 +7,20 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "center",
-        minHeight: "calc(100vh - var(--header-h))",
-        padding: "0 var(--margin)",
-      }}
-    >
-      <span className="eyebrow" style={{ marginBottom: 24 }}>404</span>
-      <h1
-        style={{
-          fontSize: "var(--t-display)",
-          fontWeight: 300,
-          lineHeight: 1.06,
-          letterSpacing: "-0.03em",
-          marginBottom: 20,
-        }}
-      >
-        Page not found.
-      </h1>
-      <p
-        style={{
-          fontSize: "var(--t-body)",
-          color: "var(--subtle)",
-          lineHeight: 1.6,
-          maxWidth: 540,
-          marginBottom: 40,
-        }}
-      >
-        The page you&apos;re looking for doesn&apos;t exist or has moved.
-        Use the navigation above or return to the homepage.
-      </p>
-      <Link href="/" className="btn btn--ghost">← Back to homepage</Link>
+    <div className="not-found-page">
+      <div className="not-found__inner">
+        <span className="not-found__num">404</span>
+        <div className="not-found__text">
+          <p className="not-found__label">Page not found</p>
+          <h1 className="not-found__heading">
+            This page didn&apos;t make<br />it to the next season.
+          </h1>
+          <p className="not-found__body">
+            The link may have changed or the page no longer exists. Try starting from the beginning.
+          </p>
+          <Link href="/" className="not-found__cta">Back to Prefall →</Link>
+        </div>
+      </div>
     </div>
   );
 }

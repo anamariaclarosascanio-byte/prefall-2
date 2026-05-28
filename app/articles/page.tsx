@@ -1,190 +1,168 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Articles — Prefall",
   description:
-    "Editorial intelligence on sustainable fashion economics — business models, regulation, and consumer behaviour.",
+    "Long-form analytical work on the economics of fashion's transition. Business models, regulation, and consumer behaviour.",
 };
-
-const CATEGORIES = ["All", "Business Models", "Regulation", "Consumer", "Supply Chain", "Finance"];
-
-const ARTICLES = [
-  {
-    id: "1", eyebrow: "Business Models", date: "Apr 2026",
-    title: "Why resale isn't the silver bullet brands hoped for",
-    body: "Resale platforms promised margin-positive circularity. The unit economics say otherwise. We model the numbers across five platform archetypes.",
-    slug: "resale-economics",
-  },
-  {
-    id: "2", eyebrow: "Regulation", date: "Mar 2026",
-    title: "CSRD: what the first wave of reports actually revealed",
-    body: "Mandatory disclosure is here. The data quality gap between ambition and reality is wider than expected.",
-    slug: "csrd-first-reports",
-  },
-  {
-    id: "3", eyebrow: "Consumer", date: "Mar 2026",
-    title: "The affordability ceiling and the sustainability premium",
-    body: "Willingness-to-pay research across seven markets shows the ceiling is lower than brands assume.",
-    slug: "affordability-ceiling",
-  },
-  {
-    id: "4", eyebrow: "Supply Chain", date: "Feb 2026",
-    title: "Nearshoring the seams: what the shift to European manufacturing actually costs",
-    body: "The politics of nearshoring are simple. The economics are not. We break down labour cost differentials across five sourcing regions.",
-    slug: "nearshoring-costs",
-  },
-  {
-    id: "5", eyebrow: "Finance", date: "Feb 2026",
-    title: "Green bonds, greenwashing, and the capital market's patience",
-    body: "Sustainable finance instruments are proliferating. Accountability frameworks are not keeping pace.",
-    slug: "green-bonds",
-  },
-  {
-    id: "6", eyebrow: "Business Models", date: "Jan 2026",
-    title: "Rental fashion's missing middle: between luxury and fast fashion",
-    body: "Rental works at the luxury end and shows promise for occasionwear. Between those poles, the model hasn't found its footing.",
-    slug: "rental-missing-middle",
-  },
-];
 
 export default function ArticlesPage() {
   return (
     <>
       {/* Page header */}
-      <div
-        style={{
-          padding: "52px var(--margin) 40px",
-          borderBottom: "1px solid var(--sep)",
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "space-between",
-          gap: 24,
-          flexWrap: "wrap",
-        }}
-      >
-        <div>
-          <p className="eyebrow" style={{ marginBottom: 14 }}>Intelligence</p>
-          <h1
-            style={{
-              fontSize: "var(--t-h2)",
-              fontWeight: 600,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Articles
-          </h1>
-        </div>
-
-        {/* Sort */}
-        <button
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            height: 40,
-            padding: "0 20px",
-            fontSize: 13,
-            fontWeight: 400,
-            color: "var(--gray)",
-            background: "transparent",
-            border: "1px solid var(--sep)",
-            cursor: "pointer",
-          }}
-        >
-          Sort: Latest ↕
-        </button>
+      <div className="page-header">
+        <h1 className="page-header__heading">Articles</h1>
+        <p className="page-header__subhead">
+          Long-form analytical work on the economics of fashion&apos;s transition. Each piece applies
+          the same lens: whether the proposition under examination holds up commercially, and what
+          determines that.
+        </p>
       </div>
 
-      {/* Category filter */}
-      <div
-        style={{
-          padding: "0 var(--margin)",
-          borderBottom: "1px solid var(--sep)",
-          display: "flex",
-          gap: 0,
-          overflowX: "auto",
-        }}
-      >
-        {CATEGORIES.map((cat, i) => (
-          <button
-            key={cat}
-            style={{
-              padding: "16px 20px",
-              fontSize: 13,
-              fontWeight: 400,
-              color: i === 0 ? "#282828" : "var(--gray)",
-              background: "transparent",
-              border: "none",
-              borderBottom: i === 0 ? "2px solid #282828" : "2px solid transparent",
-              cursor: "pointer",
-              whiteSpace: "nowrap",
-              transition: "color 0.2s",
-            }}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+      <section className="section" aria-label="All articles">
 
-      {/* Article grid */}
-      <section
-        style={{ padding: "40px var(--margin) var(--section-py)" }}
-        aria-label="Articles"
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "40px var(--gutter)",
-          }}
-          className="articles-grid"
-        >
-          {ARTICLES.map((article) => (
-            <article key={article.id} className="card">
-              <div
-                style={{
-                  aspectRatio: "3/2",
-                  background: "#E8E8E6",
-                  marginBottom: 20,
-                  overflow: "hidden",
-                }}
-              />
-              <p className="card__eyebrow">
-                {article.eyebrow}
-                <span className="card__dot" />
-                {article.date}
-              </p>
-              <h2 className="card__title" style={{ fontSize: 18 }}>
-                {article.title}
-              </h2>
-              <p className="card__body">{article.body}</p>
-              <Link
-                href={`/articles/${article.slug}`}
-                style={{
-                  display: "inline-block",
-                  fontSize: 13,
-                  color: "var(--gray)",
-                  marginTop: 16,
-                }}
-                className="link-u"
-              >
-                Read →
-              </Link>
-            </article>
-          ))}
+        {/* Filter + sort controls */}
+        <div className="issues-controls">
+          <div className="filter-bar" aria-label="Filter articles">
+            <span className="eyebrow" style={{ marginRight: 6 }}>Filter by</span>
+            <button className="filter-btn is-active">All</button>
+            <button className="filter-btn">Business models</button>
+            <button className="filter-btn">Regulation</button>
+            <button className="filter-btn">Consumer behaviour</button>
+            <button className="filter-btn">Capital</button>
+            <button className="filter-btn">Manufacturing</button>
+            <button className="filter-btn">Resale</button>
+            <button className="filter-btn">Rental</button>
+            <button className="filter-btn">New technologies</button>
+            <button className="filter-btn">Brands</button>
+          </div>
+          <div className="sort-bar">
+            <span className="sort-bar__label">Sort</span>
+            <button className="sort-btn is-active">Newest</button>
+            <button className="sort-btn">Oldest</button>
+          </div>
         </div>
+
+        {/* Block B1: 1fr | 2fr | 1fr */}
+        <div className="block-b1" style={{ marginBottom: 20 }}>
+          <article className="card">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Business models</span>
+                <span className="card__read-time">8 min read</span>
+              </div>
+              <h3 className="card__title">Resale platforms and the unit economics that determine whether the model works at scale</h3>
+            </div>
+          </article>
+
+          <article className="card card--big">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Regulation</span>
+                <span className="card__read-time">15 min read</span>
+              </div>
+              <h3 className="card__title">The CSRD reporting burden and what it actually costs a mid-size fashion brand to comply</h3>
+            </div>
+          </article>
+
+          <article className="card">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Consumer behaviour</span>
+                <span className="card__read-time">14 min read</span>
+              </div>
+              <h3 className="card__title">The gap between stated intention and purchasing behaviour in sustainable fashion</h3>
+            </div>
+          </article>
+        </div>
+
+        {/* Block B2: 1fr | 1fr | 2fr */}
+        <div className="block-b2" style={{ marginBottom: 20 }}>
+          <article className="card">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Capital</span>
+                <span className="card__read-time">12 min read</span>
+              </div>
+              <h3 className="card__title">The valuation correction in sustainable fashion</h3>
+            </div>
+          </article>
+
+          <article className="card">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Manufacturing</span>
+                <span className="card__read-time">7 min read</span>
+              </div>
+              <h3 className="card__title">Nearshoring costs and the speed-to-market trade-off</h3>
+            </div>
+          </article>
+
+          <article className="card card--big">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Business models</span>
+                <span className="card__read-time">9 min read</span>
+              </div>
+              <h3 className="card__title">Rental fashion platforms rebuilding their unit economics after the post-pandemic contraction</h3>
+            </div>
+          </article>
+        </div>
+
+        {/* Block B3: 4 equal */}
+        <div className="block-b3">
+          <article className="card">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Regulation</span>
+                <span className="card__read-time">11 min read</span>
+              </div>
+              <h3 className="card__title">What ESPR means for brands that built their model on fast product cycles</h3>
+            </div>
+          </article>
+
+          <article className="card">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Consumer behaviour</span>
+                <span className="card__read-time">10 min read</span>
+              </div>
+              <h3 className="card__title">Greenwashing exposure and the litigation risk building in EU markets</h3>
+            </div>
+          </article>
+
+          <article className="card">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Business models</span>
+                <span className="card__read-time">6 min read</span>
+              </div>
+              <h3 className="card__title">Subscription models in fashion and the retention problem</h3>
+            </div>
+          </article>
+
+          <article className="card">
+            <div className="card__img"><div className="img-ph" /></div>
+            <div className="card__body">
+              <div className="card__meta-row">
+                <span className="card__tag">Manufacturing</span>
+                <span className="card__read-time">8 min read</span>
+              </div>
+              <h3 className="card__title">Deadstock and the economics of overproduction</h3>
+            </div>
+          </article>
+        </div>
+
       </section>
-
-      <style>{`
-        @media (max-width: 1100px) {
-          .articles-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 768px) {
-          .articles-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </>
   );
 }

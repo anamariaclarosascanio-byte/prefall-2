@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About — Prefall",
@@ -9,232 +8,127 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <>
-      {/* Header */}
-      <div
-        style={{
-          padding: "80px var(--margin) 60px",
-          borderBottom: "1px solid var(--sep)",
-        }}
-      >
-        <p className="eyebrow" style={{ marginBottom: 20 }}>About Prefall</p>
-        <h1
-          style={{
-            fontSize: "var(--t-display)",
-            fontWeight: 600,
-            lineHeight: 1.06,
-            letterSpacing: "-0.025em",
-            maxWidth: 800,
-          }}
-        >
-          The business behind the next season of fashion.
+    <div className="prose-page">
+
+      {/* Hero */}
+      <div className="prose-hero">
+        <h1 className="prose-hero__heading">
+          The business behind<br />
+          fashion&apos;s transition.
         </h1>
+        <p className="prose-hero__subhead">
+          Prefall is an editorial intelligence platform. We analyse the economic viability of
+          sustainable fashion and examine whether the business models built around it hold up
+          commercially.
+        </p>
       </div>
 
-      {/* Mission section */}
-      <section
-        style={{ padding: "80px var(--margin)", borderBottom: "1px solid var(--sep)" }}
-        aria-label="Mission"
-      >
-        <div
-          style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }}
-          className="about-grid"
-        >
-          <div>
-            <p
-              className="eyebrow"
-              style={{ marginBottom: 0, position: "sticky", top: "calc(var(--header-h) + 24px)" }}
-            >
-              What we do
-            </p>
-          </div>
-          <div>
-            <p
-              style={{
-                fontSize: "clamp(18px, 2.5vw, 24px)",
-                fontWeight: 300,
-                lineHeight: 1.6,
-                letterSpacing: "-0.015em",
-                marginBottom: 32,
-              }}
-            >
-              Prefall is independent editorial intelligence on the economics of fashion&apos;s
-              sustainability transition. We analyse the business models, the regulation, and
-              the consumer behaviour that determine which propositions hold up commercially
-              and which do not.
-            </p>
-            <p style={{ fontSize: 16, lineHeight: 1.7, color: "var(--subtle)", marginBottom: 24 }}>
-              The fashion industry generates significant coverage of sustainability ambition.
-              Prefall covers the economic reality that sits underneath. We are interested in
-              whether things work — financially, operationally, at scale — not in whether
-              they are well-intentioned.
-            </p>
-            <p style={{ fontSize: 16, lineHeight: 1.7, color: "var(--subtle)" }}>
-              Our readers are professionals who need to understand the economics of the
-              industry&apos;s transition: investors, executives, policymakers, and analysts.
-            </p>
-          </div>
+      {/* What we do */}
+      <div className="prose-section">
+        <p className="prose-section__label">What we do</p>
+        <div className="prose-section__content">
+          <p className="prose-section__body">
+            Trade press reports on what brands do. Activist platforms examine the industry through
+            a moral frame. B2B intelligence tools sell operational data to compliance functions.
+            Academic research moves at academic speed. None of them brings rigorous economic
+            analysis of fashion&apos;s transition to a professional audience, at the tempo the work
+            demands.
+          </p>
+          <p className="prose-section__body" style={{ marginTop: 16 }}>
+            Prefall does. We examine whether the models hold up commercially, what determines their
+            viability, and how regulation, capital allocation, and consumer behaviour are reshaping
+            the sector over the next decade.
+          </p>
         </div>
-      </section>
+      </div>
 
-      {/* Founder section */}
-      <section
-        style={{ padding: "80px var(--margin)", borderBottom: "1px solid var(--sep)" }}
-        aria-label="Founder"
-      >
-        <div
-          style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }}
-          className="about-grid"
-        >
-          <div>
-            <p
-              className="eyebrow"
-              style={{ marginBottom: 0, position: "sticky", top: "calc(var(--header-h) + 24px)" }}
-            >
-              Founder
-            </p>
-          </div>
-          <div>
-            <div
-              style={{
-                width: "100%",
-                maxWidth: 320,
-                aspectRatio: "3/4",
-                background: "#E8E8E6",
-                marginBottom: 32,
-              }}
-            />
-            <h2
-              style={{
-                fontSize: 26,
-                fontWeight: 600,
-                letterSpacing: "-0.02em",
-                marginBottom: 8,
-              }}
-            >
-              Ana Maria Claros
-            </h2>
-            <p style={{ fontSize: 14, color: "var(--gray)", marginBottom: 24 }}>
-              Founder &amp; Editor
-            </p>
-            <p style={{ fontSize: 16, lineHeight: 1.7, color: "var(--subtle)", marginBottom: 24 }}>
-              Ana Maria brings a background in fashion economics and sustainability strategy.
-              She founded Prefall to close the gap between sustainability ambition and
-              economic analysis in the fashion industry.
-            </p>
-            <a
-              href="https://www.linkedin.com/in/ana-claros/"
-              style={{ fontSize: 14, color: "var(--gray)" }}
-              className="link-u"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn ↗
+      {/* What we cover */}
+      <div className="prose-section">
+        <p className="prose-section__label">What we cover</p>
+        <div className="prose-section__content">
+          <p className="prose-section__body">
+            Six themes organise our work: the economic viability of sustainable business models, the
+            consumer behaviour that supports or contradicts them, the structures of revenue and unit
+            economics across the industry, the gap between sustainability narratives and commercial
+            reality, the EU regulatory framework reshaping the sector, and the emerging technologies
+            that change the economics of the models they touch.
+          </p>
+        </div>
+      </div>
+
+      {/* Founded by */}
+      <div className="prose-section">
+        <p className="prose-section__label">Founded by</p>
+        <div className="prose-section__content">
+          <p className="prose-section__body" style={{ marginBottom: 24 }}>Ana Maria Claros</p>
+          <p className="prose-section__body">
+            &ldquo;I started this platform because I kept reading about sustainable fashion and not
+            finding what I was looking for. Existing coverage split between moral advocacy and
+            brand-led press, and almost no one was looking at the concrete economics that decide
+            which sustainable propositions get to survive. The question I wanted answered, what
+            holds up the models that work and what is closing the ones that do not, was not being
+            asked anywhere I could find.
+          </p>
+          <p className="prose-section__body" style={{ marginTop: 16 }}>
+            That is the question Prefall exists to ask. I read the sector from an angle few
+            publications cover: not what brands should do, but what their economics actually allow
+            them to do. I am drawn to sustainable propositions that look admirable on paper and
+            become fragile in the income statement, and to the ones that look commercial until a
+            closer look reveals a structuring decision other companies have not been willing to
+            take.&rdquo;
+          </p>
+        </div>
+      </div>
+
+      {/* Contact */}
+      <div className="about-contact" id="contact">
+        <div className="about-contact__left">
+          <p className="prose-section__label" style={{ marginBottom: 32 }}>Get in touch</p>
+          <p className="prose-section__body" style={{ marginBottom: 12 }}>
+            For press inquiries, interview requests, or partnership conversations:
+          </p>
+          <p className="prose-section__body">
+            <a href="mailto:anamaria@pre-fall.com" className="link-u" style={{ color: "inherit" }}>
+              anamaria@pre-fall.com
             </a>
-          </div>
+          </p>
+          <p className="prose-section__body" style={{ marginTop: 28, marginBottom: 12 }}>
+            Tips on companies, regulations, or industry developments:
+          </p>
+          <p className="prose-section__body">
+            <a href="mailto:contact@pre-fall.com" className="link-u" style={{ color: "inherit" }}>
+              contact@pre-fall.com
+            </a>
+          </p>
         </div>
-      </section>
 
-      {/* Editorial approach */}
-      <section
-        style={{ padding: "80px var(--margin)", borderBottom: "1px solid var(--sep)" }}
-        aria-label="Approach"
-      >
-        <div
-          style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, alignItems: "start" }}
-          className="about-grid"
-        >
+        <div className="about-contact__right">
           <div>
-            <p
-              className="eyebrow"
-              style={{ marginBottom: 0, position: "sticky", top: "calc(var(--header-h) + 24px)" }}
-            >
-              Our approach
-            </p>
+            <p className="about-form__title">Send a message</p>
+            <p className="about-form__sub">We read every message and reply within one business day.</p>
           </div>
-          <div>
-            {[
-              {
-                title: "Economic first",
-                body: "Every piece of analysis starts from the question: does this work financially? Ambition without viability is not a business story.",
-              },
-              {
-                title: "Independent",
-                body: "Prefall is editorially independent. We do not accept sponsored content. Our analysis is not influenced by commercial relationships with the companies we cover.",
-              },
-              {
-                title: "Primary sources",
-                body: "We rely on company filings, regulatory documents, and original research. Where we use secondary sources, we say so.",
-              },
-            ].map((item) => (
-              <div key={item.title} style={{ marginBottom: 40 }}>
-                <h3
-                  style={{
-                    fontSize: 18,
-                    fontWeight: 600,
-                    letterSpacing: "-0.01em",
-                    marginBottom: 10,
-                  }}
-                >
-                  {item.title}
-                </h3>
-                <p style={{ fontSize: 16, lineHeight: 1.7, color: "var(--subtle)" }}>
-                  {item.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section
-        style={{ padding: "80px var(--margin)" }}
-        aria-label="Contact"
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 60,
-            alignItems: "center",
-          }}
-          className="about-grid"
-        >
-          <div>
-            <h2
-              style={{
-                fontSize: "var(--t-h2)",
-                fontWeight: 600,
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
-                marginBottom: 20,
-              }}
-            >
-              Get in touch
-            </h2>
-            <p style={{ fontSize: 16, lineHeight: 1.7, color: "var(--subtle)", marginBottom: 32 }}>
-              For editorial enquiries, partnerships, or research collaborations, reach out
-              directly.
-            </p>
-            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <Link href="/contact" className="btn btn--primary">
-                Contact →
-              </Link>
-              <Link href="/newsletter" className="btn btn--ghost">
-                Subscribe to the newsletter
-              </Link>
+          <form className="about-contact-form" noValidate>
+            <div className="form-field">
+              <label className="form-field__label" htmlFor="contact-name">Name</label>
+              <input className="form-field__input" type="text" id="contact-name" placeholder="Your name" required />
             </div>
-          </div>
-          <div />
+            <div className="form-field">
+              <label className="form-field__label" htmlFor="contact-email">Email</label>
+              <input className="form-field__input" type="email" id="contact-email" placeholder="your@email.com" required />
+            </div>
+            <div className="form-field">
+              <label className="form-field__label" htmlFor="contact-subject">Subject</label>
+              <input className="form-field__input" type="text" id="contact-subject" placeholder="What is this about?" />
+            </div>
+            <div className="form-field">
+              <label className="form-field__label" htmlFor="contact-message">Message</label>
+              <textarea className="form-field__textarea" id="contact-message" placeholder="Your message" required />
+            </div>
+            <button className="btn-contact-submit" type="submit">Send message →</button>
+          </form>
         </div>
-      </section>
+      </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-        }
-      `}</style>
-    </>
+    </div>
   );
 }

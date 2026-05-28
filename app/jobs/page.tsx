@@ -3,218 +3,137 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Jobs — Prefall",
   description:
-    "Sustainability-focused roles across the fashion value chain — from raw materials to resale.",
-};
-
-const SENIORITY_FILTERS = ["All", "Senior", "Mid", "Junior", "Executive"];
-const FUNCTION_FILTERS  = ["All Functions", "Strategy", "Operations", "Technology", "Finance", "Policy", "Communications"];
-
-const JOBS = [
-  {
-    id: "1",
-    role: "Head of Sustainability Reporting",
-    company: "Zalando", location: "Berlin, Germany", type: "Full-time",
-    seniority: "Senior", posted: "3d ago",
-    tags: ["CSRD", "ESG", "Reporting"],
-  },
-  {
-    id: "2",
-    role: "Circular Economy Lead",
-    company: "H&M Group", location: "Stockholm, Sweden", type: "Full-time",
-    seniority: "Senior", posted: "5d ago",
-    tags: ["Circular", "Strategy", "Innovation"],
-  },
-  {
-    id: "3",
-    role: "Supply Chain Sustainability Analyst",
-    company: "Inditex", location: "Remote (EU)", type: "Full-time",
-    seniority: "Mid", posted: "1w ago",
-    tags: ["Supply Chain", "Due Diligence"],
-  },
-  {
-    id: "4",
-    role: "Product Sustainability Manager",
-    company: "Patagonia", location: "Ventura, CA", type: "Full-time",
-    seniority: "Mid", posted: "1w ago",
-    tags: ["LCA", "Materials", "Product"],
-  },
-  {
-    id: "5",
-    role: "Policy Affairs Manager — Textiles",
-    company: "Euratex", location: "Brussels, Belgium", type: "Full-time",
-    seniority: "Senior", posted: "2w ago",
-    tags: ["Policy", "Regulation", "EU"],
-  },
-  {
-    id: "6",
-    role: "ESG Investment Analyst",
-    company: "Permira", location: "London, UK", type: "Full-time",
-    seniority: "Mid", posted: "2w ago",
-    tags: ["ESG", "Finance", "Due Diligence"],
-  },
-];
-
-const SENIORITY_COLOURS: Record<string, string> = {
-  Senior:    "#059669",
-  Mid:       "#2563EB",
-  Junior:    "#D97706",
-  Executive: "#7C3AED",
+    "A curated selection of open roles in sustainability, ESG, circularity, regulation, and impact functions across the fashion industry.",
 };
 
 export default function JobsPage() {
   return (
     <>
       {/* Page header */}
-      <div
-        style={{
-          padding: "52px var(--margin) 40px",
-          borderBottom: "none",
-        }}
-      >
-        <p className="eyebrow" style={{ marginBottom: 14 }}>Opportunities</p>
-        <h1
-          style={{
-            fontSize: "var(--t-h2)",
-            fontWeight: 600,
-            lineHeight: 1.1,
-            letterSpacing: "-0.02em",
-            marginBottom: 16,
-          }}
-        >
-          Jobs
-        </h1>
-        <p style={{ fontSize: 16, color: "var(--gray)", maxWidth: 560 }}>
-          Sustainability-focused roles across the fashion value chain — from raw materials to resale.
+      <div className="page-header" style={{ borderBottom: "none", paddingBottom: 32 }}>
+        <h1 className="page-header__heading">Jobs</h1>
+        <p className="page-header__subhead">
+          A curated selection of open roles in sustainability, ESG, circularity, regulation, and
+          impact functions across the fashion industry. Browse, filter, and apply directly through
+          the listing company.
+        </p>
+        <p style={{ fontSize: "var(--t-small)", color: "var(--gray)", marginTop: 16 }}>
+          Prefall does not handle applications.
         </p>
       </div>
 
-      {/* Filters */}
-      <div
-        style={{
-          padding: "0 var(--margin)",
-          borderTop: "1px solid var(--sep)",
-          borderBottom: "1px solid var(--sep)",
-          display: "flex",
-          gap: 0,
-          overflowX: "auto",
-        }}
-      >
-        {SENIORITY_FILTERS.map((f, i) => (
-          <button
-            key={f}
-            style={{
-              padding: "16px 20px",
-              fontSize: 13,
-              color: i === 0 ? "#282828" : "var(--gray)",
-              background: "transparent",
-              border: "none",
-              borderBottom: i === 0 ? "2px solid #282828" : "2px solid transparent",
-              cursor: "pointer",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {f}
-          </button>
-        ))}
-        <div style={{ marginLeft: "auto", display: "flex" }}>
-          {FUNCTION_FILTERS.slice(0, 3).map((f) => (
-            <button
-              key={f}
-              style={{
-                padding: "16px 16px",
-                fontSize: 12,
-                color: "var(--gray)",
-                background: "transparent",
-                border: "none",
-                cursor: "pointer",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {f}
-            </button>
-          ))}
+      <section className="section" aria-label="Job listings" style={{ paddingTop: 28 }}>
+
+        {/* Filter + sort controls */}
+        <div className="issues-controls">
+          <div className="filter-bar">
+            <span className="eyebrow" style={{ marginRight: 6 }}>Filter by</span>
+            <button className="filter-btn is-active">All</button>
+            <button className="filter-btn">ESG &amp; Compliance</button>
+            <button className="filter-btn">Sustainability</button>
+            <button className="filter-btn">Regulation</button>
+            <button className="filter-btn">Circularity</button>
+          </div>
+          <div className="sort-bar">
+            <span className="sort-bar__label">Sort</span>
+            <button className="sort-btn is-active">Newest</button>
+            <button className="sort-btn">Expiring soon</button>
+          </div>
         </div>
-      </div>
 
-      {/* Job list */}
-      <section style={{ padding: "0 var(--margin) var(--section-py)" }} aria-label="Jobs">
-        {JOBS.map((job) => (
-          <div
-            key={job.id}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr auto",
-              alignItems: "center",
-              gap: 24,
-              padding: "24px 0",
-              borderBottom: "1px solid var(--sep)",
-              cursor: "pointer",
-            }}
-            className="job-row"
-          >
+        {/* Job listings */}
+        <div>
+          <a className="job-item" href="#">
             <div>
-              {/* Title row */}
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
-                <h2 style={{ fontSize: 17, fontWeight: 400, letterSpacing: "-0.01em" }}>
-                  {job.role}
-                </h2>
+              <div className="job-item__title-row">
+                <p className="job-item__role">Head of Sustainability Reporting</p>
+                <span className="seniority-tag seniority-tag--senior">Senior</span>
               </div>
-
-              {/* Meta row */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  fontSize: 13,
-                  color: "var(--gray)",
-                  flexWrap: "wrap",
-                }}
-              >
-                {/* Seniority badge */}
-                <span
-                  style={{
-                    fontSize: 11,
-                    padding: "3px 8px",
-                    border: `1px solid ${SENIORITY_COLOURS[job.seniority] || "#999"}`,
-                    color: SENIORITY_COLOURS[job.seniority] || "#999",
-                    borderRadius: 2,
-                  }}
-                >
-                  {job.seniority}
-                </span>
-                <span>{job.company}</span>
-                <span style={{ opacity: 0.35 }}>·</span>
-                <span>{job.location}</span>
-                <span style={{ opacity: 0.35 }}>·</span>
-                <span>{job.type}</span>
-              </div>
-
-              {/* Tags */}
-              <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
-                {job.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      fontSize: 11,
-                      padding: "3px 8px",
-                      background: "var(--off-white)",
-                      color: "var(--gray)",
-                      letterSpacing: "0.04em",
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
+              <div className="job-item__meta">
+                <span>Zalando</span>
+                <span className="card__dot" />
+                <span>Berlin, Germany</span>
               </div>
             </div>
+            <div className="job-item__right">Posted 10 May 2026<br />Expires 10 Jun 2026</div>
+          </a>
 
-            {/* Posted */}
-            <span style={{ fontSize: 12, color: "var(--gray)", whiteSpace: "nowrap" }}>
-              {job.posted}
-            </span>
-          </div>
-        ))}
+          <a className="job-item" href="#">
+            <div>
+              <div className="job-item__title-row">
+                <p className="job-item__role">ESG Analyst: Fashion &amp; Luxury</p>
+                <span className="seniority-tag seniority-tag--mid">Mid-level</span>
+              </div>
+              <div className="job-item__meta">
+                <span>Kering</span>
+                <span className="card__dot" />
+                <span>Paris, France</span>
+              </div>
+            </div>
+            <div className="job-item__right">Posted 8 May 2026<br />Expires 8 Jun 2026</div>
+          </a>
+
+          <a className="job-item" href="#">
+            <div>
+              <div className="job-item__title-row">
+                <p className="job-item__role">Circular Economy Lead</p>
+                <span className="seniority-tag seniority-tag--senior">Senior</span>
+              </div>
+              <div className="job-item__meta">
+                <span>H&amp;M Group</span>
+                <span className="card__dot" />
+                <span>Stockholm, Sweden</span>
+              </div>
+            </div>
+            <div className="job-item__right">Posted 3 May 2026<br />Expires 3 Jun 2026</div>
+          </a>
+
+          <a className="job-item" href="#">
+            <div>
+              <div className="job-item__title-row">
+                <p className="job-item__role">Regulatory Affairs Manager: EU Textiles</p>
+                <span className="seniority-tag seniority-tag--mid">Mid-level</span>
+              </div>
+              <div className="job-item__meta">
+                <span>PVH Corp</span>
+                <span className="card__dot" />
+                <span>Amsterdam, Netherlands</span>
+              </div>
+            </div>
+            <div className="job-item__right">Posted 28 Apr 2026<br />Expires 28 May 2026</div>
+          </a>
+
+          <a className="job-item" href="#">
+            <div>
+              <div className="job-item__title-row">
+                <p className="job-item__role">Sustainability Strategy Consultant</p>
+                <span className="seniority-tag seniority-tag--senior">Senior</span>
+              </div>
+              <div className="job-item__meta">
+                <span>McKinsey &amp; Co</span>
+                <span className="card__dot" />
+                <span>Remote / London</span>
+              </div>
+            </div>
+            <div className="job-item__right">Posted 20 Apr 2026<br />Expires 20 May 2026</div>
+          </a>
+
+          <a className="job-item" href="#">
+            <div>
+              <div className="job-item__title-row">
+                <p className="job-item__role">Product Lifecycle Analyst</p>
+                <span className="seniority-tag seniority-tag--junior">Junior</span>
+              </div>
+              <div className="job-item__meta">
+                <span>Inditex</span>
+                <span className="card__dot" />
+                <span>A Coruña, Spain</span>
+              </div>
+            </div>
+            <div className="job-item__right">Posted 14 Apr 2026<br />Expires 14 May 2026</div>
+          </a>
+        </div>
+
       </section>
     </>
   );

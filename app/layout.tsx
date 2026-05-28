@@ -65,6 +65,7 @@ export default function RootLayout({
           </div>
         </div>
         <InteractiveScript />
+      </body>
     </html>
   );
 }

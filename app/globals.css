@@ -1019,14 +1019,70 @@ hr { border: none; border-top: 1px solid var(--sep); }
 ============================================================ */
 .vc-map-page { padding-top: var(--header-h); }
 .vc-map-header {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  gap: 60px; padding: 80px var(--margin) 60px; border-bottom: 1px solid var(--sep);
+  display: grid;
+  grid-template-columns: 1fr 600px;
+  gap: 48px;
+  align-items: end;
+  padding: 80px var(--margin) 60px;
+  border-bottom: 1px solid var(--sep);
 }
-.vc-map-header > div:first-child { flex: 1; min-width: 0; }
 .vc-map-header__hint {
-  font-size: 13px; color: var(--gray); margin-top: 16px; line-height: 1.6;
+  font-size: var(--t-nav);
+  color: var(--accent);
+  margin-top: 20px;
 }
-.vc-map-footer { padding: 48px var(--margin) 80px; }
+
+/* Layer toggles */
+.vc-map-layers { display: flex; flex-direction: column; }
+.vc-map-layer {
+  display: grid;
+  grid-template-columns: 44px 170px 1fr;
+  column-gap: 16px;
+  align-items: baseline;
+  padding: 16px 12px;
+  border: none;
+  border-left: 2px solid transparent;
+  border-bottom: 1px solid var(--sep);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  width: 100%;
+}
+.vc-map-layer:last-child { border-bottom: none; }
+.vc-map-layer.active { border-left-color: #8B5CF6; border-bottom: 2px solid #8B5CF6; }
+.vc-map-layer__name { font-size: var(--t-body); font-weight: 400; color: #1A1A1A; letter-spacing: 0; }
+.vc-map-layer.active .vc-map-layer__name { color: #8B5CF6; font-weight: 500; }
+.vc-map-layer__desc { font-size: var(--t-nav); color: #7A7A7A; line-height: 1.5; }
+.ltog__num {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding-top: 3px;
+}
+.vc-map-layer.active .ltog__num { color: #8B5CF6; }
+
+.vc-map-footer { padding: 40px var(--margin) 60px; border-top: 1px solid rgba(0,0,0,0.20); }
+
+/* Regulation page stats */
+.ca-stats { display: flex; gap: 32px; flex-shrink: 0; align-items: flex-end; margin-right: 48px; }
+.ca-stat  { text-align: center; }
+.ca-sn {
+  font-size: var(--t-display);
+  font-weight: 300;
+  color: #8B5CF6;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.ca-sl {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+}
 
 /* ============================================================
    CARD READ-TIME (articles index)
@@ -1204,6 +1260,7 @@ hr { border: none; border-top: 1px solid var(--sep); }
   .newsletter-inner   { grid-template-columns: 1fr; gap: 40px; }
   .footer__grid       { grid-template-columns: 1fr 1fr; gap: 40px; }
   .vc-nodes           { grid-template-columns: repeat(3, 1fr); }
+  .vc-map-header      { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; }
   .companies-grid     { grid-template-columns: repeat(2, 1fr); }
   .prose-section      { grid-template-columns: 180px 1fr; gap: 48px; }
   .about-contact      { grid-template-columns: 1fr 1fr; gap: 48px; }

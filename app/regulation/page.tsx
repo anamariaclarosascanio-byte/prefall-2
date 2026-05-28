@@ -20,18 +20,18 @@ export default function RegulationPage() {
             its economic implications are, and where the sector stands on each.
           </p>
         </div>
-        <div style={{ display: "flex", gap: 32, flexShrink: 0, alignItems: "flex-end", marginRight: 48 }}>
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "clamp(32px,4vw,52px)", fontWeight: 300, lineHeight: 1, letterSpacing: "-0.03em" }}>14</div>
-            <div style={{ fontSize: "var(--t-eyebrow)", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gray)", marginTop: 6 }}>Instruments</div>
+        <div className="ca-stats">
+          <div className="ca-stat">
+            <div className="ca-sn">14</div>
+            <div className="ca-sl">Instruments</div>
           </div>
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "clamp(32px,4vw,52px)", fontWeight: 300, lineHeight: 1, letterSpacing: "-0.03em" }}>9</div>
-            <div style={{ fontSize: "var(--t-eyebrow)", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gray)", marginTop: 6 }}>In force</div>
+          <div className="ca-stat">
+            <div className="ca-sn">9</div>
+            <div className="ca-sl">In force / amended</div>
           </div>
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "clamp(32px,4vw,52px)", fontWeight: 300, lineHeight: 1, letterSpacing: "-0.03em" }}>2</div>
-            <div style={{ fontSize: "var(--t-eyebrow)", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--gray)", marginTop: 6 }}>Pending</div>
+          <div className="ca-stat">
+            <div className="ca-sn">2</div>
+            <div className="ca-sl">Pending</div>
           </div>
         </div>
       </div>

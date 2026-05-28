@@ -57,6 +57,28 @@ export default function ValueChainPage() {
             covering that stage.
           </p>
         </div>
+        <div className="vc-map-layers">
+          <button className="vc-map-layer ltog active" data-layer="physical">
+            <span className="ltog__num">Layer 01</span>
+            <span className="vc-map-layer__name">Physical Flow</span>
+            <span className="vc-map-layer__desc">Circle size shows relative actor volume at each stage of the chain</span>
+          </button>
+          <button className="vc-map-layer ltog" data-layer="value">
+            <span className="ltog__num">Layer 02</span>
+            <span className="vc-map-layer__name">Value Capture</span>
+            <span className="vc-map-layer__desc">Where margin is extracted and which actors absorb the cost of transition</span>
+          </button>
+          <button className="vc-map-layer ltog" data-layer="regulatory">
+            <span className="ltog__num">Layer 03</span>
+            <span className="vc-map-layer__name">Regulatory Exposure</span>
+            <span className="vc-map-layer__desc">Which EU instruments apply to each actor, and the obligations they carry</span>
+          </button>
+          <button className="vc-map-layer ltog" data-layer="scope">
+            <span className="ltog__num">Layer 04</span>
+            <span className="vc-map-layer__name">Carbon Scope</span>
+            <span className="vc-map-layer__desc">GHG responsibility by actor, Scope 1, 2, and 3 assignment across the chain</span>
+          </button>
+        </div>
       </div>
 
       {/* Nodes */}

@@ -88,7 +88,7 @@ export default function AboutPage() {
       </div>
 
       {/* Contact */}
-      <div className="about-contact" id="about-contact">
+      <div className="about-contact" id="contact">
         <div className="about-contact__left">
           <p className="prose-section__label" style={{ marginBottom: 32 }}>Get in touch</p>
           <p className="prose-section__body" style={{ marginBottom: 12 }}>

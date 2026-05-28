@@ -319,7 +319,7 @@ export default function HomePage() {
           {VALUE_CHAIN_NODES.map((node) => (
             <Link
               key={node.slug}
-              href={`/value-chain?node=${node.slug}`}
+              href={`/value-chain/${node.slug}`}
               className="vc-node"
             >
               <span className="vc-node__num">{node.num}</span>

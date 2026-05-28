@@ -224,6 +224,21 @@ export function InteractiveScript() {
       });
     });
 
+    // ── Cookie banner ─────────────────────────────────────────────────────────
+    const cookieBanner = document.getElementById('cookie-banner');
+    if (cookieBanner) {
+      // Hide immediately if already dismissed
+      if (localStorage.getItem('prefall-cookies-dismissed')) {
+        cookieBanner.classList.add('is-hidden');
+      }
+      function dismissCookies() {
+        cookieBanner!.classList.add('is-hidden');
+        localStorage.setItem('prefall-cookies-dismissed', '1');
+      }
+      document.getElementById('cookie-accept')?.addEventListener('click', dismissCookies);
+      document.getElementById('cookie-essential')?.addEventListener('click', dismissCookies);
+    }
+
     // ── Scroll-to-section helper (anchor links in VC node sidebar) ────────────
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', (e: Event) => {

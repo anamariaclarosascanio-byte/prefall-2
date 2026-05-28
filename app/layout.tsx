@@ -56,8 +56,15 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <SiteFooter />
         <ArticleModal />
+        {/* Cookie banner */}
+        <div className="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie consent">
+          <p className="cookie-banner__text">Prefall uses essential cookies to operate the site and optional analytics cookies to understand how the platform is used. We do not run advertising trackers.</p>
+          <div className="cookie-banner__btns">
+            <button className="cookie-btn cookie-btn--fill" id="cookie-accept">Accept analytics</button>
+            <button className="cookie-btn cookie-btn--outline" id="cookie-essential">Essential only</button>
+          </div>
+        </div>
         <InteractiveScript />
-      </body>
     </html>
   );
 }

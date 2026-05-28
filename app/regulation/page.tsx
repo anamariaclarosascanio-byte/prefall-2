@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { RegulationTrackerScript } from "@/components/RegulationTrackerScript";
 
 export const metadata: Metadata = {
@@ -59,62 +60,62 @@ export default function RegulationPage() {
           <p className="reg-status-group__heading">
             <span className="badge badge--in-force">In force</span>
           </p>
-          <a className="reg-item" href="#">
+          <Link className="reg-item" href="/regulation/ecgt">
             <div>
               <p className="reg-item__name">ECGT</p>
               <p className="reg-item__full">Empowering Consumers for Green Transition Directive</p>
               <p className="reg-item__summary">Bans vague environmental claims in consumer communications. Generic terms such as &ldquo;eco-friendly&rdquo; or &ldquo;sustainable&rdquo; are prohibited without specific, verified evidence. Applies from 27 September 2026.</p>
             </div>
             <span className="badge badge--in-force">In force</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/eudr">
             <div>
               <p className="reg-item__name">EUDR</p>
               <p className="reg-item__full">EU Deforestation Regulation</p>
               <p className="reg-item__summary">Requires traceability and deforestation-free evidence for cattle leather and rubber entering the EU market. Large operators must comply from 30 December 2026.</p>
             </div>
             <span className="badge badge--in-force">In force</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/espr">
             <div>
               <p className="reg-item__name">ESPR</p>
               <p className="reg-item__full">Ecodesign for Sustainable Products Regulation</p>
               <p className="reg-item__summary">In force July 2024. Bans destruction of unsold apparel and footwear for large companies from 19 July 2026. Enables Digital Product Passport requirements via delegated acts.</p>
             </div>
             <span className="badge badge--in-force">In force</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/textile-epr">
             <div>
               <p className="reg-item__name">EU Textile EPR</p>
               <p className="reg-item__full">Extended Producer Responsibility — Textiles (Directive 2025/1892)</p>
               <p className="reg-item__summary">Requires producers to fund collection, sorting, and recycling of post-consumer textiles. National EPR schemes must be operational across all member states by April 2028.</p>
             </div>
             <span className="badge badge--in-force">In force</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/ppwr">
             <div>
               <p className="reg-item__name">PPWR</p>
               <p className="reg-item__full">Packaging and Packaging Waste Regulation</p>
               <p className="reg-item__summary">Applies to all packaging including e-commerce parcels and garment bags. Empty space in parcels must not exceed 40% from 12 August 2026. No exemption for SMEs.</p>
             </div>
             <span className="badge badge--in-force">In force</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/france-eco-score">
             <div>
               <p className="reg-item__name">France eco-score</p>
               <p className="reg-item__full">France Textile Environmental Score</p>
               <p className="reg-item__summary">Voluntary environmental impact scoring for apparel sold in France, mandatory for any brand making environmental claims. Third parties may publish scores without brand consent from October 2026.</p>
             </div>
             <span className="badge badge--in-force">In force</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/california-sb707">
             <div>
               <p className="reg-item__name">California SB 707</p>
               <p className="reg-item__full">California Textile Extended Producer Responsibility Act</p>
               <p className="reg-item__summary">First US state textile EPR law. Applies to producers with more than $1M global annual turnover selling into California. Producer registration required by July 2026.</p>
             </div>
             <span className="badge badge--in-force">In force</span>
-          </a>
+          </Link>
         </div>
 
         {/* Amended */}
@@ -122,22 +123,22 @@ export default function RegulationPage() {
           <p className="reg-status-group__heading">
             <span className="badge badge--amended">Amended</span>
           </p>
-          <a className="reg-item" href="#">
+          <Link className="reg-item" href="/regulation/csrd">
             <div>
               <p className="reg-item__name">CSRD</p>
               <p className="reg-item__full">Corporate Sustainability Reporting Directive</p>
               <p className="reg-item__summary">Omnibus I (March 2026) narrowed scope to companies with more than 1,000 employees AND more than €450M net turnover, both thresholds required. First mandatory reports due 2028 for FY2027.</p>
             </div>
             <span className="badge badge--amended">Amended</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/csddd">
             <div>
               <p className="reg-item__name">CSDDD</p>
               <p className="reg-item__full">Corporate Sustainability Due Diligence Directive</p>
               <p className="reg-item__summary">Omnibus I narrowed scope to companies with more than 5,000 employees AND more than €1.5B worldwide net turnover. Civil liability regime removed. Compliance required from July 2029.</p>
             </div>
             <span className="badge badge--amended">Amended</span>
-          </a>
+          </Link>
         </div>
 
         {/* Enforcement pending */}
@@ -145,22 +146,22 @@ export default function RegulationPage() {
           <p className="reg-status-group__heading">
             <span className="badge badge--transpos">Enforcement pending</span>
           </p>
-          <a className="reg-item" href="#">
+          <Link className="reg-item" href="/regulation/esrs">
             <div>
               <p className="reg-item__name">ESRS</p>
               <p className="reg-item__full">European Sustainability Reporting Standards</p>
               <p className="reg-item__summary">Defines the content requirements for CSRD reports. A simplified version reducing required datapoints by 61% must be adopted by delegated act by 18 September 2026.</p>
             </div>
             <span className="badge badge--transpos">Enforcement pending</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/dpp">
             <div>
               <p className="reg-item__name">DPP</p>
               <p className="reg-item__full">Digital Product Passport (Textiles)</p>
               <p className="reg-item__summary">Mandatory product-level data disclosure via QR/NFC for all textiles sold in the EU. Textile delegated act expected 2027; enforcement anticipated mid-2028.</p>
             </div>
             <span className="badge badge--transpos">Enforcement pending</span>
-          </a>
+          </Link>
         </div>
 
         {/* Proposed */}
@@ -168,30 +169,30 @@ export default function RegulationPage() {
           <p className="reg-status-group__heading">
             <span className="badge badge--preparation">Proposed</span>
           </p>
-          <a className="reg-item" href="#">
+          <Link className="reg-item" href="/regulation/textile-labelling">
             <div>
               <p className="reg-item__name">Textile labelling revision</p>
               <p className="reg-item__full">EU Textile Labelling Regulation Revision</p>
               <p className="reg-item__summary">Proposal to add sustainability and origin information to physical product labels. Indefinitely delayed; likely to be absorbed into DPP delegated act scope.</p>
             </div>
             <span className="badge badge--preparation">Proposed</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/green-claims-directive">
             <div>
               <p className="reg-item__name">Green Claims Directive</p>
               <p className="reg-item__full">EU Green Claims Directive</p>
               <p className="reg-item__summary">Would have required independent pre-verification of all explicit environmental claims. Legislative process suspended June 2025; no confirmed revival date.</p>
             </div>
             <span className="badge badge--preparation">Proposed</span>
-          </a>
-          <a className="reg-item" href="#">
+          </Link>
+          <Link className="reg-item" href="/regulation/italy-ddl">
             <div>
               <p className="reg-item__name">Italy fast fashion bill</p>
               <p className="reg-item__full">Italy DDL S.1690 Fast Fashion Bill</p>
               <p className="reg-item__summary">Proposes eco-score labelling, advertising restrictions on ultra-fast fashion, and a parcel levy. Introduced to the Italian Senate in October 2025; still under parliamentary review.</p>
             </div>
             <span className="badge badge--preparation">Proposed</span>
-          </a>
+          </Link>
         </div>
 
       </section>

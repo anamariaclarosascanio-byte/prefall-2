@@ -1824,6 +1824,71 @@ hr { border: none; border-top: 1px solid var(--sep); }
   .detail-sidebar__icon { display: inline-block; }
   .detail-sidebar__panel { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
   .detail-sidebar__panel.is-open { max-height: 400px; }
+}
+
+/* ============================================================
+   COOKIE BANNER
+============================================================ */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 840px;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 20px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 300;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  transition: transform 0.5s var(--ease-expo), opacity 0.5s;
+}
+.cookie-banner.is-hidden { transform: translateX(-50%) translateY(140%); opacity: 0; pointer-events: none; }
+.cookie-banner__text {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.55;
+}
+.cookie-banner__btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.cookie-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: var(--font);
+  font-size: var(--t-nav);
+  font-weight: 400;
+  letter-spacing: -0.014rem;
+  line-height: 1;
+  height: 44px;
+  padding: 0 28px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.cookie-btn--fill { background: #FEFEFD; color: #282828; border-color: transparent; }
+.cookie-btn--fill:hover { background: var(--accent); color: #fff; }
+.cookie-btn--outline { background: transparent; color: var(--accent); border-color: var(--accent); }
+.cookie-btn--outline:hover { background: var(--accent); color: #fff; }
+@media (max-width: 768px) {
+  .cookie-banner { flex-direction: column; align-items: stretch; }
+  .cookie-banner__btns { width: 100%; }
+  .cookie-btn { flex: 1; min-width: 0; padding: 0 16px; }
   .article-page__header { padding: 0 var(--margin) 32px; }
   .company-profile__hero { padding: 0 var(--margin) 32px; }
   .company-gallery__main { aspect-ratio: 4/3; }

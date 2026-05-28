@@ -90,7 +90,7 @@ export default async function HomePage() {
         </p>
         <div className="hero__ctas">
           <Link href="/articles" className="btn btn--primary">Read the latest →</Link>
-          <Link href="/contact" className="btn btn--ghost">Get in touch →</Link>
+          <Link href="/about#contact" className="btn btn--ghost">Get in touch →</Link>
         </div>
       </section>
 
